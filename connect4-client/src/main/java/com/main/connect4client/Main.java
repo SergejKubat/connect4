@@ -8,18 +8,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Connect4 - Home");
         stage.setScene(scene);
-        stage.show();
-    }
+        stage.setResizable(false);
 
-    public static void main(String[] args) {
-        launch();
+        stage.show();
     }
 }

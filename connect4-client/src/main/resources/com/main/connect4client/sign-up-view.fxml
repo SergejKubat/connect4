@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="signUpContainer" prefHeight="600.0" prefWidth="800.0"
+            stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
+            fx:controller="com.main.connect4client.controllers.SignUpController">
+    <HBox alignment="CENTER" prefHeight="180.0" prefWidth="800.0">
+        <ImageView fitHeight="180.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@./images/logo.png"/>
+        </ImageView>
+    </HBox>
+    <HBox alignment="CENTER" layoutY="180.0" prefHeight="200.0" prefWidth="800.0">
+        <VBox prefHeight="200.0" prefWidth="250.0" spacing="20.0">
+            <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
+                <Label text="Username:" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
+                <TextField>
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                </TextField>
+            </VBox>
+            <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
+                <Label text="Email:" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
+                <TextField>
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                </TextField>
+            </VBox>
+            <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
+                <Label text="Password:" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
+                <PasswordField>
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                </PasswordField>
+            </VBox>
+            <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
+                <Label text="Repeat password:" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
+                <PasswordField>
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                </PasswordField>
+            </VBox>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Sign In" textAlignment="CENTER">
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </Button>
+        </VBox>
+    </HBox>
+    <HBox alignment="CENTER" layoutY="493.0" prefHeight="100.0" prefWidth="800.0">
+        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <Label text="Already have an account?" textFill="WHITE">
+                <font>
+                    <Font name="Arial" size="14.0"/>
+                </font>
+            </Label>
+            <Label styleClass="link" text="Sign In" textFill="#675edf" onMouseClicked="#openSignInPage">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </Label>
+        </VBox>
+    </HBox>
+</AnchorPane>

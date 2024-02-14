@@ -9,24 +9,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomeController {
+public class SignInController {
     @FXML
-    private AnchorPane homeContainer;
-
-    @FXML
-    public void openSignInPage() throws IOException {
-        Stage stage = (Stage) homeContainer.getScene().getWindow();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-in-view.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load());
-
-        stage.setScene(scene);
-        stage.setTitle("Connect4 - Sign In");
-    }
+    private AnchorPane signInContainer;
 
     public void openSignUpPage() throws IOException {
-        Stage stage = (Stage) homeContainer.getScene().getWindow();
+        Stage stage = (Stage) signInContainer.getScene().getWindow();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-up-view.fxml"));
 

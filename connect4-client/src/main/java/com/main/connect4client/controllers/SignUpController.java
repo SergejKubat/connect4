@@ -9,13 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomeController {
+public class SignUpController {
     @FXML
-    private AnchorPane homeContainer;
+    private AnchorPane signUpContainer;
 
     @FXML
     public void openSignInPage() throws IOException {
-        Stage stage = (Stage) homeContainer.getScene().getWindow();
+        Stage stage = (Stage) signUpContainer.getScene().getWindow();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-in-view.fxml"));
 
@@ -23,16 +23,5 @@ public class HomeController {
 
         stage.setScene(scene);
         stage.setTitle("Connect4 - Sign In");
-    }
-
-    public void openSignUpPage() throws IOException {
-        Stage stage = (Stage) homeContainer.getScene().getWindow();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-up-view.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load());
-
-        stage.setScene(scene);
-        stage.setTitle("Connect4 - Sign Up");
     }
 }
