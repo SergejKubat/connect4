@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="600.0" prefWidth="800.0"
+            styleClass="background"
+            stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
+            fx:controller="com.main.connect4client.controllers.RulesController">
+    <HBox alignment="CENTER" layoutY="20.0" prefWidth="800.0">
+        <Label alignment="CENTER" prefWidth="680" style="-fx-font-weight: bold;" text="Connect4 Rules"
+               textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Arial" size="20.0"/>
+            </font>
+        </Label>
+    </HBox>
+    <HBox alignment="CENTER" layoutY="60.0" prefWidth="800.0">
+        <VBox prefWidth="680" spacing="10.0">
+            <Label prefWidth="680"
+                   text="Welcome to Connect4! This classic two-player game is both strategic and engaging. The rules are simple, but mastering the strategy can take time. Here's how you play:"
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Objective" textFill="WHITE"
+                   wrapText="true">
+                <font>
+                    <Font name="Arial" size="16.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="The goal of Connect4 is to be the first player to connect four of your colored discs in a row, either horizontally, vertically, or diagonally on the game board."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Game Components" textFill="WHITE"
+                   wrapText="true">
+                <font>
+                    <Font name="Arial" size="16.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="1. Game Board: The board consists of six rows and seven columns, making a total of 42 slots. Players take turns dropping their colored discs into the columns."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="2. Discs: Each player has a set of discs, typically one color. The common colors are red and yellow, but you can choose any colors you prefer."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Starting the Game" textFill="WHITE"
+                   wrapText="true">
+                <font>
+                    <Font name="Arial" size="16.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="1. Connect Four: The game ends when one player successfully connects four of their discs either horizontally, vertically, or diagonally. The connection must be continuous and unbroken."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="2. Draw: If the entire board is filled without either player achieving a Connect4, the game is a draw."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Strategies" textFill="WHITE"
+                   wrapText="true">
+                <font>
+                    <Font name="Arial" size="16.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="1. Blocking Opponent: Pay attention to your opponent's moves and try to block their potential Connect4 formations."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="2. Building Your Own Line: Simultaneously, plan your moves to create your own opportunities for a Connect4."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="3. Center Control: Starting in the center column can give you more opportunities for different connections."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="680"
+                   text="4. Pay Attention to Verticals: Watch for opportunities to create vertical connections as they can be challenging for your opponent to block."
+                   textFill="WHITE" wrapText="true">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
+            </Label>
+        </VBox>
+    </HBox>
+    <HBox alignment="CENTER" layoutY="550.0" prefWidth="800.0">
+        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Back to main">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </HBox>
+</AnchorPane>

@@ -12,7 +12,7 @@
 }
 
 .button:hover {
-	-fx-background-color: #007bff;
+	-fx-opacity: 0.8;
 }
 
 .link {
@@ -23,5 +23,15 @@
 }
 
 .link:hover {
-    -fx-text-fill: #007bff;
+    -fx-opacity: 0.8;
+}
+
+#mainMenu {
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-color: #0d1b29;
+}
+
+#exitButton {
+    -fx-background-color: #dc3545;
 }
