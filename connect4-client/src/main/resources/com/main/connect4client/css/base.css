@@ -26,12 +26,10 @@
     -fx-opacity: 0.8;
 }
 
-#mainMenu {
-    -fx-border-style: solid inside;
-    -fx-border-width: 1;
-    -fx-border-color: #0d1b29;
+.btn-red {
+    -fx-background-color: #dc3545;
 }
 
-#exitButton {
-    -fx-background-color: #dc3545;
+.about {
+    -fx-background-color: #070d12;
 }

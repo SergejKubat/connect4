@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity"
+          prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17"
+          fx:controller="com.main.connect4client.controllers.MatchController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="560.0" minHeight="10.0" prefHeight="560.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <Pane prefHeight="560.0" prefWidth="309.0"/>
+    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="background" stylesheets="@css/base.css"
+          GridPane.columnIndex="1">
+        <Label alignment="CENTER" layoutX="13.0" layoutY="295.0" prefHeight="191.0" prefWidth="321.0"
+               textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+                <Font size="34.0"/>
+            </font>
+        </Label>
+    </Pane>
+</GridPane>

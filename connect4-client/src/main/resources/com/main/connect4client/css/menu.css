@@ -1,0 +1,27 @@
+.menu-bar {
+    -fx-background-color: #0c141c;
+}
+
+.menu {
+    -fx-label-padding: 3px;
+    -fx-text-fill: #fff;
+    -fx-background-color: #0c141c;
+}
+
+.menu .label,
+.menu-item .label
+{
+    -fx-text-fill: #fff;
+}
+
+.menu:hover, .menu:focused, .menu:pressed {
+    -fx-background-color: #152433;
+}
+
+.menu-item:hover, .menu-item:focused {
+    -fx-background-color: #0e1e2e;
+}
+
+.context-menu {
+    -fx-background-color: #070e14;
+}

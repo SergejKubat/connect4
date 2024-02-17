@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rankingContainer" id="AnchorPane" prefHeight="600.0"
+            prefWidth="800.0"
+            styleClass="background" xmlns="http://javafx.com/javafx/17"
+            fx:controller="com.main.connect4client.controllers.RankingController">
+    <stylesheets>
+        <URL value="@css/base.css"/>
+        <URL value="@css/table.css"/>
+    </stylesheets>
+    <HBox alignment="CENTER" layoutY="20.0" prefWidth="800.0">
+        <VBox alignment="CENTER" prefWidth="550.0" spacing="30.0">
+            <Label text="Players rank list" textFill="WHITE">
+                <font>
+                    <Font name="Arial" size="32.0"/>
+                </font>
+            </Label>
+            <TableView fx:id="rankingTable" prefHeight="400.0" prefWidth="550.0">
+                <columns>
+                    <TableColumn fx:id="numberColumn" prefWidth="50.0" text="No."/>
+                    <TableColumn fx:id="usernameColumn" minWidth="50.0" prefWidth="150.0" text="Username"/>
+                    <TableColumn fx:id="winsColumn" minWidth="30.0" prefWidth="100.0" text="Wins"/>
+                    <TableColumn fx:id="defeatsColumn" minWidth="30.0" prefWidth="100.0" text="Defeats"/>
+                    <TableColumn fx:id="registeredAtColumn" minWidth="50.0" prefWidth="150.0" text="Registered At"/>
+                </columns>
+            </TableView>
+            <Button prefHeight="25.0" prefWidth="180.0" text="Back to main" onAction="#backToMain">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </Button>
+        </VBox>
+    </HBox>
+</AnchorPane>

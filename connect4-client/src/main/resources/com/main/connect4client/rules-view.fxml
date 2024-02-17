@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="600.0" prefWidth="800.0"
-            styleClass="background"
-            stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rulesContainer" prefHeight="600.0" prefWidth="800.0"
+            styleClass="background" stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
             fx:controller="com.main.connect4client.controllers.RulesController">
     <HBox alignment="CENTER" layoutY="20.0" prefWidth="800.0">
-        <Label alignment="CENTER" prefWidth="680" style="-fx-font-weight: bold;" text="Connect4 Rules"
-               textFill="WHITE" wrapText="true">
+        <Label alignment="CENTER" prefWidth="680" style="-fx-font-weight: bold;" text="Connect4 Rules" textFill="WHITE"
+               wrapText="true">
             <font>
                 <Font name="Arial" size="20.0"/>
             </font>
@@ -25,8 +24,7 @@
                     <Font name="Arial" size="12.0"/>
                 </font>
             </Label>
-            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Objective" textFill="WHITE"
-                   wrapText="true">
+            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Objective" textFill="WHITE" wrapText="true">
                 <font>
                     <Font name="Arial" size="16.0"/>
                 </font>
@@ -78,8 +76,7 @@
                     <Font name="Arial" size="12.0"/>
                 </font>
             </Label>
-            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Strategies" textFill="WHITE"
-                   wrapText="true">
+            <Label prefWidth="680" style="-fx-font-weight: bold;" text="Strategies" textFill="WHITE" wrapText="true">
                 <font>
                     <Font name="Arial" size="16.0"/>
                 </font>
@@ -115,10 +112,13 @@
         </VBox>
     </HBox>
     <HBox alignment="CENTER" layoutY="550.0" prefWidth="800.0">
-        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Back to main">
+        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Back to main" onAction="#backToMain">
             <font>
                 <Font size="14.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </Button>
     </HBox>
 </AnchorPane>

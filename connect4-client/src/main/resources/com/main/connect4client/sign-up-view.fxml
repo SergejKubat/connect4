@@ -22,7 +22,7 @@
                         <Font name="Arial" size="12.0"/>
                     </font>
                 </Label>
-                <TextField>
+                <TextField fx:id="usernameInput">
                     <font>
                         <Font name="Arial" size="14.0"/>
                     </font>
@@ -34,7 +34,7 @@
                         <Font name="Arial" size="12.0"/>
                     </font>
                 </Label>
-                <TextField>
+                <TextField fx:id="emailInput">
                     <font>
                         <Font name="Arial" size="14.0"/>
                     </font>
@@ -46,7 +46,7 @@
                         <Font name="Arial" size="12.0"/>
                     </font>
                 </Label>
-                <PasswordField>
+                <PasswordField fx:id="passwordInput">
                     <font>
                         <Font name="Arial" size="14.0"/>
                     </font>
@@ -58,13 +58,14 @@
                         <Font name="Arial" size="12.0"/>
                     </font>
                 </Label>
-                <PasswordField>
+                <PasswordField fx:id="repeatPasswordInput">
                     <font>
                         <Font name="Arial" size="14.0"/>
                     </font>
                 </PasswordField>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Sign In" textAlignment="CENTER">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Sign In" textAlignment="CENTER"
+                    onAction="#singUp">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
