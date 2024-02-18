@@ -16,7 +16,7 @@
 }
 
 .text-field {
-    -fx-padding: 6px;
+    -fx-padding: 6px 8px;
 	-fx-background-color: transparent;
 	-fx-text-fill: #fff;
 	-fx-border-style: solid inside;
@@ -27,6 +27,14 @@
 
 .text-field:focused {
     -fx-border-color: #4f98e8;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
 }
 
 .btn-red {
@@ -50,6 +58,14 @@
 
 .about {
     -fx-background-color: #070d12;
+}
+
+.table-header {
+    -fx-background-color: #0d1721;
+}
+
+.table-row:hover {
+    -fx-background-color: #0c283d;
 }
 
 #welcomeText {

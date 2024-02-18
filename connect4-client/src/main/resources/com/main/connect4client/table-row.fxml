@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.*?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" prefHeight="25.0"
+      stylesheets="@css/base.css" styleClass="table-row"
+      fx:controller="com.main.connect4client.controllers.TableRowController">
+    <Label fx:id="rankLabel" alignment="CENTER" prefWidth="50.0" textFill="WHITE">
+        <font>
+            <Font name="Arial" size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="usernameLabel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="100.0"
+           textFill="WHITE">
+        <font>
+            <Font name="Arial" size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="winsLabel" alignment="CENTER" layoutX="110.0" layoutY="10.0" prefWidth="75.0"
+           textFill="WHITE">
+        <font>
+            <Font name="Arial" size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="defeatsLabel" alignment="CENTER" layoutX="210.0" layoutY="10.0" prefWidth="75.0"
+           textFill="WHITE">
+        <font>
+            <Font name="Arial" size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="matchesPlayedLabel" alignment="CENTER" layoutX="310.0" layoutY="10.0" prefWidth="140.0"
+           textFill="WHITE">
+        <font>
+            <Font name="Arial" size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="registeredAtLabel" alignment="CENTER" layoutX="410.0" layoutY="10.0" prefWidth="140.0"
+           textFill="WHITE">
+        <font>
+            <Font name="Arial" size="14.0"/>
+        </font>
+    </Label>
+    <padding>
+        <Insets top="5.0"/>
+    </padding>
+</HBox>

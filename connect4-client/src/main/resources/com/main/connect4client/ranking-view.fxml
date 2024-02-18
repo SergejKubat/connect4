@@ -1,37 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rankingContainer" id="AnchorPane" prefHeight="600.0"
-            prefWidth="800.0"
-            styleClass="background" xmlns="http://javafx.com/javafx/17"
-            fx:controller="com.main.connect4client.controllers.RankingController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" fx:id="rankingContainer" prefHeight="600.0" prefWidth="800.0"
+            styleClass="background" xmlns="http://javafx.com/javafx/21"
+            fx:controller="com.main.connect4client.controllers.RankingsController">
     <stylesheets>
         <URL value="@css/base.css"/>
-        <URL value="@css/table.css"/>
+        <URL value="@css/scrollbar.css"/>
     </stylesheets>
     <HBox alignment="CENTER" layoutY="20.0" prefWidth="800.0">
-        <VBox alignment="CENTER" prefWidth="550.0" spacing="30.0">
+        <VBox alignment="CENTER" prefWidth="600.0" spacing="30.0">
             <Label text="Players rank list" textFill="WHITE">
                 <font>
                     <Font name="Arial" size="32.0"/>
                 </font>
             </Label>
-            <TableView fx:id="rankingTable" prefHeight="400.0" prefWidth="550.0">
-                <columns>
-                    <TableColumn fx:id="numberColumn" prefWidth="50.0" text="No."/>
-                    <TableColumn fx:id="usernameColumn" minWidth="50.0" prefWidth="150.0" text="Username"/>
-                    <TableColumn fx:id="winsColumn" minWidth="30.0" prefWidth="100.0" text="Wins"/>
-                    <TableColumn fx:id="defeatsColumn" minWidth="30.0" prefWidth="100.0" text="Defeats"/>
-                    <TableColumn fx:id="registeredAtColumn" minWidth="50.0" prefWidth="150.0" text="Registered At"/>
-                </columns>
-            </TableView>
-            <Button prefHeight="25.0" prefWidth="180.0" text="Back to main" onAction="#backToMain">
+            <VBox fx:id="rankingsTable" prefHeight="400.0" prefWidth="600.0">
+                <HBox prefHeight="25.0" styleClass="table-header">
+                    <Label alignment="CENTER" prefWidth="50.0" text="Rank" textFill="WHITE">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="100.0" text="Username"
+                           textFill="WHITE">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" layoutX="110.0" layoutY="10.0" prefWidth="75.0" text="Wins"
+                           textFill="WHITE">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" layoutX="210.0" layoutY="10.0" prefWidth="75.0" text="Defeats"
+                           textFill="WHITE">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" layoutX="310.0" layoutY="10.0" prefWidth="140.0" text="Matches played"
+                           textFill="WHITE">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" layoutX="410.0" layoutY="10.0" prefWidth="140.0" text="Registered at"
+                           textFill="WHITE">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Label>
+                    <padding>
+                        <Insets top="5.0"/>
+                    </padding>
+                </HBox>
+                <Label fx:id="loadingLabel" alignment="CENTER" prefWidth="600.0" text="Loading..." textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets top="15.0"/>
+                    </VBox.margin>
+                </Label>
+                <ScrollPane fx:id="rankingsScrollPane" prefWidth="600.0" hbarPolicy="NEVER" vbarPolicy="NEVER">
+                    <VBox fx:id="rankingsData" prefWidth="580.0"/>
+                </ScrollPane>
+            </VBox>
+            <Button onAction="#backToMain" prefHeight="25.0" prefWidth="180.0" text="Back to main">
                 <font>
                     <Font size="14.0"/>
                 </font>
