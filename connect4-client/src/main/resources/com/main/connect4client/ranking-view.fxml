@@ -6,8 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" fx:id="rankingContainer" prefHeight="600.0" prefWidth="800.0"
-            styleClass="background" xmlns="http://javafx.com/javafx/21"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" fx:id="rankingContainer" prefHeight="600.0"
+            prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/17"
             fx:controller="com.main.connect4client.controllers.RankingsController">
     <stylesheets>
         <URL value="@css/base.css"/>

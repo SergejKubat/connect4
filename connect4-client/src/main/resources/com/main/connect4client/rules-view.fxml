@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rulesContainer" prefHeight="600.0" prefWidth="800.0"
-            styleClass="background" stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
+            stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
             fx:controller="com.main.connect4client.controllers.RulesController">
     <HBox alignment="CENTER" layoutY="20.0" prefWidth="800.0">
         <Label alignment="CENTER" prefWidth="680" style="-fx-font-weight: bold;" text="Connect4 Rules" textFill="WHITE"
