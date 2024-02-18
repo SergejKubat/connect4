@@ -3,7 +3,7 @@
 }
 
 .menu {
-    -fx-label-padding: 3px;
+    -fx-label-padding: 5px;
     -fx-text-fill: #fff;
     -fx-background-color: #0c141c;
 }
@@ -11,6 +11,7 @@
 .menu .label,
 .menu-item .label
 {
+    -fx-font-size: 14px;
     -fx-text-fill: #fff;
 }
 

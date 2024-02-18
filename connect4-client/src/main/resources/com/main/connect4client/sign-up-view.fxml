@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="signUpContainer" prefHeight="600.0" prefWidth="800.0"
-            stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
+            stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/21"
             fx:controller="com.main.connect4client.controllers.SignUpController">
     <HBox alignment="CENTER" prefHeight="180.0" prefWidth="800.0">
         <ImageView fitHeight="180.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@./images/logo.png"/>
         </ImageView>
     </HBox>
-    <HBox alignment="CENTER" layoutY="180.0" prefHeight="200.0" prefWidth="800.0">
-        <VBox prefHeight="200.0" prefWidth="250.0" spacing="20.0">
+    <HBox alignment="CENTER" layoutY="160.0" prefWidth="800.0">
+        <VBox prefHeight="200.0" prefWidth="250.0" spacing="5.0">
             <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
                 <Label text="Username:" textFill="WHITE">
                     <font>
@@ -27,6 +27,12 @@
                         <Font name="Arial" size="14.0"/>
                     </font>
                 </TextField>
+                <Label fx:id="usernameInputError" styleClass="input-error" text="Username is not in valid format."
+                       textFill="WHITE" visible="false">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
             </VBox>
             <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
                 <Label text="Email:" textFill="WHITE">
@@ -39,6 +45,12 @@
                         <Font name="Arial" size="14.0"/>
                     </font>
                 </TextField>
+                <Label fx:id="emailInputError" styleClass="input-error" text="Email is not in valid format."
+                       textFill="WHITE" visible="false">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
             </VBox>
             <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
                 <Label text="Password:" textFill="WHITE">
@@ -51,6 +63,12 @@
                         <Font name="Arial" size="14.0"/>
                     </font>
                 </PasswordField>
+                <Label fx:id="passwordInputError" styleClass="input-error" text="Password is not in valid format."
+                       textFill="WHITE" visible="false">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
             </VBox>
             <VBox prefHeight="50.0" prefWidth="250.0" spacing="5.0">
                 <Label text="Repeat password:" textFill="WHITE">
@@ -63,9 +81,15 @@
                         <Font name="Arial" size="14.0"/>
                     </font>
                 </PasswordField>
+                <Label fx:id="repeatPasswordInputError" styleClass="input-error"
+                       text="Repeated password is not in valid format." textFill="WHITE" visible="false">
+                    <font>
+                        <Font name="Arial" size="12.0"/>
+                    </font>
+                </Label>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Sign In" textAlignment="CENTER"
-                    onAction="#singUp">
+            <Button mnemonicParsing="false" onAction="#singUp" prefHeight="40.0" prefWidth="250.0" text="Sign In"
+                    textAlignment="CENTER">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
@@ -79,7 +103,7 @@
                     <Font name="Arial" size="14.0"/>
                 </font>
             </Label>
-            <Label styleClass="link" text="Sign In" textFill="#675edf" onMouseClicked="#openSignInPage">
+            <Label onMouseClicked="#openSignInPage" styleClass="link" text="Sign In" textFill="#675edf">
                 <font>
                     <Font name="Arial" size="12.0"/>
                 </font>

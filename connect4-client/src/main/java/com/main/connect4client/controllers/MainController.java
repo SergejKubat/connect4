@@ -1,7 +1,6 @@
 package com.main.connect4client.controllers;
 
 import com.main.connect4client.Main;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -76,8 +75,14 @@ public class MainController {
         stage.setTitle("Connect4 - Rankings");
     }
 
-    public void exitApplication() {
-        Platform.exit();
-        System.exit(0);
+    public void signOut() throws IOException {
+        Stage stage = (Stage) mainContainer.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load());
+
+        stage.setScene(scene);
+        stage.setTitle("Connect4 - Home");
     }
 }
