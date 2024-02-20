@@ -1,17 +1,23 @@
 package com.main.connect4client.controllers;
 
+import com.main.connect4client.controllers.client.ClientController;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.control.Label;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MatchController {
     private static final double PLACEHOLDER_SIZE = 60;
@@ -19,22 +25,30 @@ public class MatchController {
     private static final int COLUMNS = 7;
 
     private static final int ROWS = 6;
-
     @FXML
-    public GridPane matchContainer;
-
+    public GridPane boardContainer;
     @FXML
-    public Pane boardPane;
+    public Label statusLabel;
+    @FXML
+    public Circle statusCircle;
+    private boolean playerOneTurn = false;
+    private final boolean continueToPlay = true;
+    private boolean waiting = true;
+    private final boolean playerOneMove = false;
+    private int rowSelected;
+    private int columnSelected;
+    private final Token[][] board = new Token[COLUMNS][ROWS];
 
     @FXML
     public void initialize() {
-        Shape gridShape = generateGrid();
+        Shape board = generateBoard();
+        List<Rectangle> columns = generateColumns();
 
-        matchContainer.add(gridShape, 0, 0);
-        matchContainer.getChildren().addAll(generateColumns());
+        boardContainer.add(board, 0, 0);
+        boardContainer.getChildren().addAll(columns);
     }
 
-    private Shape generateGrid() {
+    private Shape generateBoard() {
         Shape shape = new Rectangle((COLUMNS + 1) * PLACEHOLDER_SIZE, (ROWS + 1) * PLACEHOLDER_SIZE);
 
         for (int y = 0; y < ROWS; y++) {
@@ -70,17 +84,73 @@ public class MatchController {
         List<Rectangle> list = new ArrayList<>();
 
         for (int x = 0; x < COLUMNS; x++) {
-            Rectangle rect = new Rectangle(PLACEHOLDER_SIZE, (ROWS + 1) * PLACEHOLDER_SIZE);
+            Rectangle rectangle = new Rectangle(PLACEHOLDER_SIZE, (ROWS + 1) * PLACEHOLDER_SIZE);
 
-            rect.setTranslateX(x * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
-            rect.setFill(Color.TRANSPARENT);
+            rectangle.setTranslateX(x * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
+            rectangle.setFill(Color.TRANSPARENT);
 
-            rect.setOnMouseEntered(e -> rect.setFill(Color.rgb(122, 136, 171, 0.2)));
-            rect.setOnMouseExited(e -> rect.setFill(Color.TRANSPARENT));
+            rectangle.setOnMouseEntered(e -> {
+                rectangle.setCursor(Cursor.HAND);
+                rectangle.setFill(Color.rgb(122, 136, 171, 0.2));
+            });
 
-            list.add(rect);
+            rectangle.setOnMouseExited(e -> rectangle.setFill(Color.TRANSPARENT));
+
+            final int column = x;
+
+            rectangle.setOnMouseClicked((MouseEvent event) -> {
+                try {
+                    int row = ClientController.getInstance().getAvailableRow(column);
+                    if (row != -1) {
+                        if (playerOneTurn) {
+                            placeToken(new Token(playerOneMove), column, row);
+                            playerOneTurn = false;
+                            rowSelected = row;
+                            columnSelected = column;
+                            waiting = false;
+                        }
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            });
+
+            list.add(rectangle);
         }
 
         return list;
+    }
+
+    private void placeToken(Token token, int column, int row) {
+        board[column][row] = token;
+
+        boardContainer.getChildren().add(token);
+
+        token.setTranslateX(column * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
+
+        TranslateTransition animation = new TranslateTransition(Duration.seconds(0.5), token);
+
+        animation.setToY(row * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
+
+        animation.play();
+    }
+
+    private Optional<Token> getToken(int column, int row) {
+        if (column < 0 || column >= COLUMNS
+                || row < 0 || row >= ROWS) {
+            return Optional.empty();
+        }
+
+        return Optional.ofNullable(board[column][row]);
+    }
+
+    private static class Token extends Circle {
+
+        public Token(boolean isRed) {
+            super(PLACEHOLDER_SIZE / 2, isRed ? Color.RED : Color.YELLOW);
+
+            setCenterX(PLACEHOLDER_SIZE / 2);
+            setCenterY(PLACEHOLDER_SIZE / 2);
+        }
     }
 }

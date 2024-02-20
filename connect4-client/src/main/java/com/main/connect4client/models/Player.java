@@ -1,6 +1,7 @@
 package com.main.connect4client.models;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * <p>Java class for player complex type.
@@ -26,7 +27,7 @@ import java.util.Date;
  * &lt;/complexType>
  * </pre>
  */
-public class Player {
+public class Player implements GenericEntity {
     private Long id;
 
     private String username;
@@ -42,6 +43,17 @@ public class Player {
     private Date registeredAt;
 
     private Date signInDate;
+
+    public Player(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Player(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     public Player(Long id, String username, int wins, int defeats, Date registeredAt) {
         this.id = id;
@@ -209,5 +221,61 @@ public class Player {
      */
     public void setSignInDate(Date signInDate) {
         this.signInDate = signInDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return wins == player.wins && defeats == player.defeats && Objects.equals(id, player.id)
+                && Objects.equals(username, player.username) && Objects.equals(email, player.email)
+                && Objects.equals(password, player.password) && Objects.equals(registeredAt, player.registeredAt)
+                && Objects.equals(signInDate, player.signInDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, email, password, wins, defeats, registeredAt, signInDate);
+    }
+
+    @Override
+    public String getTableName() {
+        return null;
+    }
+
+    @Override
+    public String getAtrValues() {
+        return null;
+    }
+
+    @Override
+    public String getAtrNames() {
+        return null;
+    }
+
+    @Override
+    public String setAtrValues() {
+        return null;
+    }
+
+    @Override
+    public String getWhereCondition() {
+        return null;
+    }
+
+    @Override
+    public String getUpdateQuery() {
+        return null;
+    }
+
+    @Override
+    public String getIdentificator() {
+        return null;
+    }
+
+    @Override
+    public String getOrderCondition() {
+        return null;
     }
 }

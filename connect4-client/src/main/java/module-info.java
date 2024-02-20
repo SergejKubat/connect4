@@ -9,4 +9,5 @@ module com.main.connect4client {
     opens com.main.connect4client to javafx.fxml;
     opens com.main.connect4client.controllers to javafx.fxml;
     opens com.main.connect4client.models to javafx.base;
+    opens com.main.connect4client.models.enums to javafx.base;
 }
