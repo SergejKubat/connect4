@@ -1,6 +1,8 @@
 package com.main.connect4server.models;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.List;
 
 public interface GenericEntity extends Serializable {
     String getTableName();
@@ -17,9 +19,9 @@ public interface GenericEntity extends Serializable {
 
     String getIdentificator();
 
-    //List<GenericEntity> getList(ResultSet resultSet) throws Exception;
+    List<GenericEntity> getList(ResultSet resultSet) throws Exception;
 
     String getOrderCondition();
 
-    //GenericEntity getNewRecord(ResultSet rs);
+    GenericEntity getNewRecord(ResultSet rs);
 }

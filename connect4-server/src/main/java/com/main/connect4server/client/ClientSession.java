@@ -21,14 +21,6 @@ public class ClientSession {
         return instance;
     }
 
-    public void addPlayer(GenericEntity object) {
-        if (object instanceof Player) {
-            if (!players.contains(object)) {
-                players.add((Player) object);
-            }
-        }
-    }
-
     public ArrayList<Player> getPlayers() {
         return players;
     }
@@ -40,6 +32,14 @@ public class ClientSession {
         }
 
         return -1;
+    }
+
+    public void addPlayer(GenericEntity object) {
+        if (object instanceof Player) {
+            if (!players.contains(object)) {
+                players.add((Player) object);
+            }
+        }
     }
 
     public void removePlayer(Object object) {

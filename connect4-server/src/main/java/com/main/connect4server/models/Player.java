@@ -1,32 +1,34 @@
 package com.main.connect4server.models;
 
+import java.sql.ResultSet;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
-        * <p>Java class for player complex type.
-        *
-        * <p>The following schema fragment specifies the expected content contained within this class.
-        *
-        * <pre>
+ * <p>Java class for player complex type.
+ *
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ *
+ * <pre>
  * &lt;complexType name="player">
-         *   &lt;complexContent>
-         *     &lt;restriction base="{<a href="http://www.w3.org/2001/XMLSchema">...</a>}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
-         *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="wins" type="{http://www.w3.org/2001/XMLSchema}int"/>
-         *         &lt;element name="defeats" type="{http://www.w3.org/2001/XMLSchema}int"/>
-         *         &lt;element name="registeredAt" type="{http://www.w3.org/2001/XMLSchema}date"/>
-         *         &lt;element name="signInDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-        */
+ *   &lt;complexContent>
+ *     &lt;restriction base="{<a href="http://www.w3.org/2001/XMLSchema">...</a>}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="wins" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="defeats" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="registeredAt" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="signInDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ */
 public class Player implements GenericEntity {
     private Long id;
 
@@ -43,6 +45,13 @@ public class Player implements GenericEntity {
     private Date registeredAt;
 
     private Date signInDate;
+
+    public Player() {
+    }
+
+    public Player(String username) {
+        this.username = username;
+    }
 
     public Player(String username, String password) {
         this.username = username;
@@ -275,7 +284,17 @@ public class Player implements GenericEntity {
     }
 
     @Override
+    public List<GenericEntity> getList(ResultSet resultSet) throws Exception {
+        return null;
+    }
+
+    @Override
     public String getOrderCondition() {
+        return null;
+    }
+
+    @Override
+    public GenericEntity getNewRecord(ResultSet rs) {
         return null;
     }
 }
