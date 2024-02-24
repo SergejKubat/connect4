@@ -11,39 +11,39 @@
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainContainer" prefHeight="600.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/17"
-            fx:controller="com.main.connect4client.controllers.MainController">
+            fx:controller="com.main.connect4client.controllers.fxml.MainController">
     <stylesheets>
         <URL value="@css/base.css"/>
         <URL value="@css/menu.css"/>
     </stylesheets>
     <MenuBar prefHeight="40.0" prefWidth="800.0">
         <Menu mnemonicParsing="false" text="Play">
-            <MenuItem mnemonicParsing="false" onAction="#openNewGamePage" text="New Match">
+            <MenuItem fx:id="newMatchItem" mnemonicParsing="false" text="New Match">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                 </accelerator>
             </MenuItem>
         </Menu>
         <Menu mnemonicParsing="false" text="Rankings">
-            <MenuItem mnemonicParsing="false" onAction="#openRankingPage" text="Rank List">
+            <MenuItem fx:id="rankingsItem" mnemonicParsing="false" text="Rank List">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                 </accelerator>
             </MenuItem>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" onAction="#openRulesPage" text="Rules">
+            <MenuItem fx:id="rulesItem" mnemonicParsing="false" text="Rules">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                 </accelerator>
             </MenuItem>
-            <MenuItem mnemonicParsing="false" onAction="#openTutorial" text="Tutorial">
+            <MenuItem fx:id="tutorialItem" mnemonicParsing="false" text="Tutorial">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
                 </accelerator>
             </MenuItem>
             <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" onAction="#openAboutPage" text="About"/>
+            <MenuItem fx:id="aboutItem" mnemonicParsing="false" text="About"/>
         </Menu>
     </MenuBar>
     <HBox alignment="CENTER" layoutY="40.0" prefHeight="180.0" prefWidth="800.0">
@@ -52,7 +52,7 @@
         </ImageView>
     </HBox>
     <HBox alignment="CENTER" layoutY="220.0" prefWidth="800.0">
-        <Label fx:id="welcomeText" text="Welcome, User!" textFill="WHITE">
+        <Label text="Welcome, User!" textFill="WHITE">
             <font>
                 <Font name="Arial" size="32.0"/>
             </font>
@@ -136,7 +136,7 @@
         </GridPane>
     </HBox>
     <HBox alignment="CENTER" layoutY="520.0" prefWidth="800.0">
-        <Button mnemonicParsing="false" onAction="#signOut" prefWidth="180.0" styleClass="btn-red" text="Sign Out">
+        <Button fx:id="signOutBtn" mnemonicParsing="false" prefWidth="180.0" styleClass="btn-red" text="Sign Out">
             <cursor>
                 <Cursor fx:constant="HAND"/>
             </cursor>

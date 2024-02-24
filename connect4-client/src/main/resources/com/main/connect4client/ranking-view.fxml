@@ -9,7 +9,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" fx:id="rankingContainer" prefHeight="600.0"
             prefWidth="800.0"
             xmlns="http://javafx.com/javafx/17"
-            fx:controller="com.main.connect4client.controllers.RankingsController">
+            fx:controller="com.main.connect4client.controllers.fxml.RankingsController">
     <stylesheets>
         <URL value="@css/base.css"/>
         <URL value="@css/scrollbar.css"/>
@@ -74,7 +74,7 @@
                     <VBox fx:id="rankingsData" prefWidth="580.0"/>
                 </ScrollPane>
             </VBox>
-            <Button onAction="#backToMain" prefHeight="25.0" prefWidth="180.0" text="Back to main">
+            <Button fx:id="backToMainBtn" prefHeight="25.0" prefWidth="180.0" text="Back to main">
                 <font>
                     <Font size="14.0"/>
                 </font>

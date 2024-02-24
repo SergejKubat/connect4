@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" prefHeight="25.0"
       stylesheets="@css/base.css" styleClass="table-row"
-      fx:controller="com.main.connect4client.controllers.TableRowController">
+      fx:controller="com.main.connect4client.controllers.fxml.TableRowController">
     <Label fx:id="rankLabel" alignment="CENTER" prefWidth="50.0" textFill="WHITE">
         <font>
             <Font name="Arial" size="14.0"/>

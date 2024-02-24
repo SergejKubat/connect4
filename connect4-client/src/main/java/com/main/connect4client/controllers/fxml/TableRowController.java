@@ -1,4 +1,4 @@
-package com.main.connect4client.controllers;
+package com.main.connect4client.controllers.fxml;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

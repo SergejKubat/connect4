@@ -7,7 +7,8 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="600.0" prefWidth="800.0" stylesheets="@css/base.css"
-            xmlns="http://javafx.com/javafx/17" fx:controller="com.main.connect4client.controllers.MatchController">
+            xmlns="http://javafx.com/javafx/17"
+            fx:controller="com.main.connect4client.controllers.fxml.MatchController">
     <HBox alignment="CENTER" prefHeight="420.0" prefWidth="800.0">
         <GridPane fx:id="boardContainer" prefHeight="420.0" prefWidth="480.0">
             <columnConstraints>

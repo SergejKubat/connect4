@@ -4,10 +4,12 @@ module com.main.connect4client {
     requires java.desktop;
 
     exports com.main.connect4client;
-    exports com.main.connect4client.controllers;
+    exports com.main.connect4client.controllers.fxml;
+    exports com.main.connect4client.controllers.gui;
 
     opens com.main.connect4client to javafx.fxml;
-    opens com.main.connect4client.controllers to javafx.fxml;
     opens com.main.connect4client.models to javafx.base;
     opens com.main.connect4client.models.enums to javafx.base;
+
+    opens com.main.connect4client.controllers.fxml to javafx.fxml;
 }

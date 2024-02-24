@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rulesContainer" prefHeight="600.0" prefWidth="800.0"
             stylesheets="@css/base.css" xmlns="http://javafx.com/javafx/17"
-            fx:controller="com.main.connect4client.controllers.RulesController">
+            fx:controller="com.main.connect4client.controllers.fxml.RulesController">
     <HBox alignment="CENTER" layoutY="20.0" prefWidth="800.0">
         <Label alignment="CENTER" prefWidth="680" style="-fx-font-weight: bold;" text="Connect4 Rules" textFill="WHITE"
                wrapText="true">
@@ -112,7 +112,7 @@
         </VBox>
     </HBox>
     <HBox alignment="CENTER" layoutY="550.0" prefWidth="800.0">
-        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Back to main" onAction="#backToMain">
+        <Button fx:id="backToMainBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Back to main">
             <font>
                 <Font size="14.0"/>
             </font>

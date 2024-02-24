@@ -1,14 +1,12 @@
-package com.main.connect4client.controllers;
+package com.main.connect4client.controllers.gui;
 
 import com.main.connect4client.controllers.client.ClientController;
+import com.main.connect4client.controllers.fxml.MatchController;
 import javafx.animation.TranslateTransition;
-import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.Label;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -19,33 +17,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MatchController {
+public class MatchGUIController {
     private static final double PLACEHOLDER_SIZE = 60;
-
     private static final int COLUMNS = 7;
-
     private static final int ROWS = 6;
-    @FXML
-    public GridPane boardContainer;
-    @FXML
-    public Label statusLabel;
-    @FXML
-    public Circle statusCircle;
-    private boolean playerOneTurn = false;
+    private final MatchController matchController;
     private final boolean continueToPlay = true;
-    private boolean waiting = true;
     private final boolean playerOneMove = false;
+    private final Token[][] board = new Token[COLUMNS][ROWS];
+    private boolean playerOneTurn = false;
+    private boolean waiting = true;
     private int rowSelected;
     private int columnSelected;
-    private final Token[][] board = new Token[COLUMNS][ROWS];
 
-    @FXML
-    public void initialize() {
+    public MatchGUIController(MatchController matchController) {
+        this.matchController = matchController;
+
         Shape board = generateBoard();
         List<Rectangle> columns = generateColumns();
 
-        boardContainer.add(board, 0, 0);
-        boardContainer.getChildren().addAll(columns);
+        this.matchController.boardContainer.add(board, 0, 0);
+        this.matchController.boardContainer.getChildren().addAll(columns);
     }
 
     private Shape generateBoard() {
@@ -124,7 +116,7 @@ public class MatchController {
     private void placeToken(Token token, int column, int row) {
         board[column][row] = token;
 
-        boardContainer.getChildren().add(token);
+        this.matchController.boardContainer.getChildren().add(token);
 
         token.setTranslateX(column * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
 

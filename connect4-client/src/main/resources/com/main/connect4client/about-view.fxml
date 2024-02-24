@@ -11,7 +11,7 @@
             minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" stylesheets="@css/base.css"
             styleClass="about" xmlns="http://javafx.com/javafx/17"
-            fx:controller="com.main.connect4client.controllers.AboutController">
+            fx:controller="com.main.connect4client.controllers.fxml.AboutController">
     <HBox prefHeight="240.0" prefWidth="400.0">
         <VBox prefHeight="200.0" prefWidth="150.0">
             <ImageView fitHeight="50.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
@@ -51,7 +51,7 @@
         </VBox>
     </HBox>
     <HBox alignment="CENTER_RIGHT" layoutY="240.0" prefHeight="60.0" prefWidth="400.0">
-        <Button mnemonicParsing="false" prefWidth="100.0" styleClass="btn-red" text="Close" onAction="#exitAbout">
+        <Button fx:id="exitBtn" mnemonicParsing="false" prefWidth="100.0" styleClass="btn-red" text="Close">
             <cursor>
                 <Cursor fx:constant="HAND"/>
             </cursor>
