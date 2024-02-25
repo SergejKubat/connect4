@@ -25,9 +25,9 @@ public class ClientSession {
         return players;
     }
 
-    public int getIndexOfPlayer(Player player){
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).getId().equals(player.getId()))
+    public int getIndexOfPlayer(Player player) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getId().equals(player.getId()))
                 return i;
         }
 

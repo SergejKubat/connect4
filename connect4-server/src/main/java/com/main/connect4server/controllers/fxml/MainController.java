@@ -6,13 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class MainController {
-    private MainGUIController mainGUIController;
-
     @FXML
     public Button startServerBtn;
-
     @FXML
     public Label statusLabel;
+    private MainGUIController mainGUIController;
 
     @FXML
     public void initialize() throws IllegalArgumentException {

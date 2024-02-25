@@ -11,7 +11,7 @@ import java.util.List;
 public class DatabaseBroker implements DatabaseRepository {
     @Override
     public List<GenericEntity> findAll(GenericEntity entity) throws Exception {
-        List<GenericEntity> list = null;
+        List<GenericEntity> list;
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
@@ -56,8 +56,6 @@ public class DatabaseBroker implements DatabaseRepository {
     @Override
     public Long insert(GenericEntity entity) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
-
-        System.out.println("HELLO MOTHER FUCKER!!!");
 
         String query = "INSERT INTO " + entity.getTableName() + " (" + entity.getAtrNames() + ") VALUES " +
                 "(" + entity.getAtrValues() + ")";

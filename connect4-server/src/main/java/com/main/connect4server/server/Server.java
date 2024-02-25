@@ -9,22 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server extends Thread {
-    public static int PLAYER1 = 1;
-
-    public static int PLAYER2 = 2;
-
-    public static int PLAYER1_WON = 5;
-
-    public static int PLAYER2_WON = 8;
-
-    public static int DRAW = 3;
-
-    public static int CONTINUE = 4;
-
     public static final int COLS = 7;
-
     public static final int ROWS = 6;
-
+    public static int PLAYER1 = 1;
+    public static int PLAYER2 = 2;
+    public static int PLAYER1_WON = 5;
+    public static int PLAYER2_WON = 8;
+    public static int DRAW = 3;
+    public static int CONTINUE = 4;
     private final ServerSocket serverSocket;
 
     private final List<ClientThread> players;

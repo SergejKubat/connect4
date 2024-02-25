@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
             prefHeight="600.0" prefWidth="800.0" stylesheets="@css/base.css"
             xmlns="http://javafx.com/javafx/17" fx:controller="com.main.connect4server.controllers.fxml.MainController">
     <HBox alignment="CENTER" prefHeight="180.0" prefWidth="800.0">
@@ -19,7 +20,8 @@
     </HBox>
     <HBox alignment="CENTER" layoutY="291.0" prefWidth="800.0">
         <VBox alignment="CENTER" spacing="20.0">
-            <Button fx:id="startServerBtn" alignment="CENTER" prefHeight="40.0" prefWidth="180.0" text="Start the Server"
+            <Button fx:id="startServerBtn" alignment="CENTER" prefHeight="40.0" prefWidth="180.0"
+                    text="Start the Server"
                     textAlignment="CENTER" textFill="WHITE">
                 <font>
                     <Font name="Arial" size="16.0"/>

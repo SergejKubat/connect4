@@ -43,19 +43,16 @@ public class ClientThread extends Thread {
     }
 
     private void handleRequest() throws Exception {
-        //while (!isInterrupted()) {
+        while (!isInterrupted()) {
             try {
                 Request request = (Request) this.receiver.receive();
                 Response response = new Response();
 
                 RequestOperation requestOperation = request.getOperation();
 
-                System.out.println("Request operation: " + requestOperation);
-
                 switch (requestOperation) {
                     case SIGN_UP -> {
                         try {
-                            System.out.println("I AM HERE");
                             GenericEntity object = ServerController.getInstance().signUp(request.getData());
 
                             ClientSession.getInstance().getPlayers().add((Player) object);
@@ -70,7 +67,7 @@ public class ClientThread extends Thread {
                         this.computerPlayer = new ComputerPlayer();
 
                         sender.send(response);
-                        }
+                    }
                     case SIGN_IN -> {
                         try {
                             GenericEntity object = ServerController.getInstance().signIn(request.getData());
@@ -87,7 +84,7 @@ public class ClientThread extends Thread {
                         this.computerPlayer = new ComputerPlayer();
 
                         sender.send(response);
-                        }
+                    }
                     case GET_PLAYERS -> {
                         try {
                             List<GenericEntity> players = ServerController.getInstance().getAllPlayers(new Player());
@@ -100,7 +97,7 @@ public class ClientThread extends Thread {
                         }
 
                         sender.send(response);
-                        }
+                    }
                     case GET_AVAILABLE_ROW -> {
                         ClickedColumn c1 = (ClickedColumn) request.getData();
 
@@ -186,6 +183,6 @@ public class ClientThread extends Thread {
                 ex.printStackTrace();
                 DatabaseConnection.getInstance().closeConnection();
             }
-        //}
+        }
     }
 }
