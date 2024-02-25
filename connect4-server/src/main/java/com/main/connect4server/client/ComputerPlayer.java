@@ -353,17 +353,4 @@ public class ComputerPlayer {
         }
         return -1;
     }
-
-    public void printGrid() {
-        for (int i = 0; i < ROWS; i++) {
-            System.out.print('|');
-
-            for (int j = 0; j < COLS; j++) {
-                System.out.print(board[i][j]);
-                System.out.print('|');
-            }
-
-            System.out.println();
-        }
-    }
 }

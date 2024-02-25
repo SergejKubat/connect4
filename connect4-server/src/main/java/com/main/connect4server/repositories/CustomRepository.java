@@ -1,6 +1,6 @@
 package com.main.connect4server.repositories;
 
-import com.main.connect4server.models.GenericEntity;
+import com.main.connect4shared.domain.GenericEntity;
 
 import java.sql.SQLException;
 import java.util.List;

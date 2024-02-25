@@ -3,7 +3,7 @@ package com.main.connect4client.controllers.gui;
 import com.main.connect4client.Main;
 import com.main.connect4client.controllers.fxml.RankingsController;
 import com.main.connect4client.controllers.fxml.TableRowController;
-import com.main.connect4client.models.Player;
+import com.main.connect4shared.domain.Player;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;

@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/connect4-client/pom.xml" />
         <option value="$PROJECT_DIR$/connect4-server/pom.xml" />
+        <option value="$PROJECT_DIR$/connect4-shared/pom.xml" />
       </list>
     </option>
   </component>

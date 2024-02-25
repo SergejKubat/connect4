@@ -1,7 +1,7 @@
 package com.main.connect4server.client;
 
-import com.main.connect4server.models.GenericEntity;
-import com.main.connect4server.models.Player;
+import com.main.connect4shared.domain.GenericEntity;
+import com.main.connect4shared.domain.Player;
 
 import java.util.ArrayList;
 

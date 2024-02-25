@@ -49,21 +49,6 @@ public class SignInGUIController {
         }
     }
 
-    public void openSignUpPage() {
-        Stage stage = (Stage) this.signInController.signInContainer.getScene().getWindow();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-up-view.fxml"));
-
-        try {
-            Scene scene = new Scene(fxmlLoader.load());
-
-            stage.setScene(scene);
-            stage.setTitle("Connect4 - Sign Up");
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
     private boolean validateInputs(String username, String password) {
         clearInputErrors();
 
@@ -85,5 +70,20 @@ public class SignInGUIController {
     private void clearInputErrors() {
         this.signInController.usernameInputError.setVisible(false);
         this.signInController.passwordInputError.setVisible(false);
+    }
+
+    public void openSignUpPage() {
+        Stage stage = (Stage) this.signInController.signInContainer.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-up-view.fxml"));
+
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+
+            stage.setScene(scene);
+            stage.setTitle("Connect4 - Sign Up");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

@@ -1,6 +1,4 @@
-package com.main.connect4client.models;
-
-import com.main.connect4client.models.enums.ResponseStatus;
+package com.main.connect4shared.response;
 
 /**
  * <p>Java class for response complex type.
@@ -10,7 +8,7 @@ import com.main.connect4client.models.enums.ResponseStatus;
  * <pre>
  * &lt;complexType name="response">
  *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     &lt;restriction base="{<a href="http://www.w3.org/2001/XMLSchema">...</a>}anyType">
  *       &lt;sequence>
  *         &lt;element name="exception" type="{http://web/}exception" minOccurs="0"/>
  *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>

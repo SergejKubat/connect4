@@ -1,4 +1,4 @@
-package com.main.connect4server.models;
+package com.main.connect4shared.response;
 
 import java.io.BufferedOutputStream;
 import java.io.ObjectOutputStream;
@@ -12,11 +12,11 @@ public class Sender implements Serializable {
         this.socket = socket;
     }
 
-    public void send(Object object) throws Exception {
+    public void send(Object object) {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            out.writeObject(object);
-            out.flush();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            objectOutputStream.writeObject(object);
+            objectOutputStream.flush();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

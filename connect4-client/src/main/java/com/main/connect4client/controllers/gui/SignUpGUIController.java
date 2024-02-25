@@ -1,10 +1,12 @@
 package com.main.connect4client.controllers.gui;
 
 import com.main.connect4client.Main;
+import com.main.connect4client.controllers.client.ClientController;
 import com.main.connect4client.controllers.fxml.SignUpController;
 import com.main.connect4client.utils.Message;
+import com.main.connect4client.utils.Session;
 import com.main.connect4client.utils.Validator;
-import javafx.fxml.FXML;
+import com.main.connect4shared.domain.Player;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -33,41 +35,14 @@ public class SignUpGUIController {
             return;
         }
 
-        // send credentials to remote server
-        boolean success = false;
-
-        if (!success) {
-            Message.showMessage("Server error.", Alert.AlertType.ERROR);
-            return;
-        }
-
-        Stage stage = (Stage) this.signUpController.signUpContainer.getScene().getWindow();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-
         try {
-            Scene scene = new Scene(fxmlLoader.load());
+            Player player = ClientController.getInstance().signUp(username, email, password);
 
-            stage.setScene(scene);
-            stage.setTitle("Connect4 - Main");
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+            Session.getInstance().setPlayer(player);
 
-    @FXML
-    public void openSignInPage() {
-        Stage stage = (Stage) this.signUpController.signUpContainer.getScene().getWindow();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-in-view.fxml"));
-
-        try {
-            Scene scene = new Scene(fxmlLoader.load());
-
-            stage.setScene(scene);
-            stage.setTitle("Connect4 - Sign In");
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            openMainPage();
+        } catch (Exception ex) {
+            Message.showMessage(ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -110,5 +85,35 @@ public class SignUpGUIController {
         this.signUpController.emailInputError.setVisible(false);
         this.signUpController.passwordInputError.setVisible(false);
         this.signUpController.repeatPasswordInputError.setVisible(false);
+    }
+
+    public void openMainPage() {
+        Stage stage = (Stage) this.signUpController.signUpContainer.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+
+            stage.setScene(scene);
+            stage.setTitle("Connect4 - Main");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void openSignInPage() {
+        Stage stage = (Stage) this.signUpController.signUpContainer.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sign-in-view.fxml"));
+
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+
+            stage.setScene(scene);
+            stage.setTitle("Connect4 - Sign In");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

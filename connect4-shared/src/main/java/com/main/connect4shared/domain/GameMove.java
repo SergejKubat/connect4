@@ -1,4 +1,4 @@
-package com.main.connect4server.models;
+package com.main.connect4shared.domain;
 
 import java.sql.ResultSet;
 import java.util.List;

@@ -1,6 +1,10 @@
-package com.main.connect4client.models;
+package com.main.connect4shared.domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -20,7 +24,6 @@ import java.util.Objects;
  *         &lt;element name="wins" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="defeats" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="registeredAt" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="signInDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,7 +45,12 @@ public class Player implements GenericEntity {
 
     private Date registeredAt;
 
-    private Date signInDate;
+    public Player() {
+    }
+
+    public Player(String username) {
+        this.username = username;
+    }
 
     public Player(String username, String password) {
         this.username = username;
@@ -58,6 +66,15 @@ public class Player implements GenericEntity {
     public Player(Long id, String username, int wins, int defeats, Date registeredAt) {
         this.id = id;
         this.username = username;
+        this.wins = wins;
+        this.defeats = defeats;
+        this.registeredAt = registeredAt;
+    }
+
+    public Player(Long id, String username, String email, int wins, int defeats, Date registeredAt) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
         this.wins = wins;
         this.defeats = defeats;
         this.registeredAt = registeredAt;
@@ -203,26 +220,6 @@ public class Player implements GenericEntity {
         this.registeredAt = registeredAt;
     }
 
-    /**
-     * Gets the value of the signInDate property.
-     *
-     * @return possible object is
-     * {@link Date }
-     */
-    public Date getSignInDate() {
-        return signInDate;
-    }
-
-    /**
-     * Sets the value of the signInDate property.
-     *
-     * @param signInDate allowed object is
-     *                   {@link Date }
-     */
-    public void setSignInDate(Date signInDate) {
-        this.signInDate = signInDate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -230,28 +227,32 @@ public class Player implements GenericEntity {
         Player player = (Player) o;
         return wins == player.wins && defeats == player.defeats && Objects.equals(id, player.id)
                 && Objects.equals(username, player.username) && Objects.equals(email, player.email)
-                && Objects.equals(password, player.password) && Objects.equals(registeredAt, player.registeredAt)
-                && Objects.equals(signInDate, player.signInDate);
+                && Objects.equals(password, player.password) && Objects.equals(registeredAt, player.registeredAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, email, password, wins, defeats, registeredAt, signInDate);
+        return Objects.hash(id, username, email, password, wins, defeats, registeredAt);
     }
 
     @Override
     public String getTableName() {
-        return null;
+        return "player";
     }
 
     @Override
     public String getAtrValues() {
-        return null;
+        return "'" + this.username +
+                "', '" + this.email +
+                "', '" + this.password +
+                "', '" + this.wins +
+                "', '" + this.defeats +
+                "', CURRENT_DATE()";
     }
 
     @Override
     public String getAtrNames() {
-        return null;
+        return "username,email,password,wins,defeats,registeredAt";
     }
 
     @Override
@@ -261,21 +262,57 @@ public class Player implements GenericEntity {
 
     @Override
     public String getWhereCondition() {
-        return null;
+        return "username='" + username + "'";
     }
 
     @Override
     public String getUpdateQuery() {
-        return null;
+        return "wins=" + this.wins;
     }
 
     @Override
     public String getIdentificator() {
-        return null;
+        return String.valueOf(this.id);
+    }
+
+    @Override
+    public List<GenericEntity> getList(ResultSet resultSet) throws Exception {
+        List<GenericEntity> list = new LinkedList<>();
+
+        while (resultSet.next()) {
+            Long id = resultSet.getLong("id");
+            String username = resultSet.getString("username");
+            String email = resultSet.getString("email");
+            int wins = resultSet.getInt("wins");
+            int defeats = resultSet.getInt("defeats");
+            Date registeredAt = resultSet.getDate("registeredAt");
+
+            Player p = new Player(id, username, email, wins, defeats, registeredAt);
+
+            list.add(p);
+        }
+
+        return list;
     }
 
     @Override
     public String getOrderCondition() {
-        return null;
+        return "wins";
+    }
+
+    @Override
+    public GenericEntity getNewRecord(ResultSet resultSet) {
+        try {
+            Long id = resultSet.getLong("id");
+            String username = resultSet.getString("username");
+            String email = resultSet.getString("email");
+            int wins = resultSet.getInt("wins");
+            int defeats = resultSet.getInt("defeats");
+            Date registeredAt = resultSet.getDate("registeredAt");
+
+            return new Player(id, username, email, wins, defeats, registeredAt);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

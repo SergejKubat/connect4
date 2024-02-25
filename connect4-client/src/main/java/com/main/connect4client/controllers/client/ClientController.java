@@ -1,12 +1,17 @@
 package com.main.connect4client.controllers.client;
 
-import com.main.connect4client.models.*;
-import com.main.connect4client.models.enums.RequestOperation;
-import com.main.connect4client.models.enums.ResponseStatus;
 import com.main.connect4client.utils.ClientSocket;
+import com.main.connect4shared.domain.ClickedColumn;
+import com.main.connect4shared.domain.GameMove;
+import com.main.connect4shared.domain.Player;
+import com.main.connect4shared.request.Request;
+import com.main.connect4shared.request.RequestOperation;
+import com.main.connect4shared.response.Response;
+import com.main.connect4shared.response.ResponseStatus;
 
 public class ClientController {
     private static ClientController instance;
+
     private final ClientSocket clientSocket;
 
     private ClientController() {
@@ -17,6 +22,7 @@ public class ClientController {
         if (instance == null) {
             return new ClientController();
         }
+
         return instance;
     }
 

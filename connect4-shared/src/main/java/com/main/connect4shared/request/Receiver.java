@@ -1,4 +1,4 @@
-package com.main.connect4server.models;
+package com.main.connect4shared.request;
 
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -13,10 +13,10 @@ public class Receiver implements Serializable {
 
     public Object receive() {
         try {
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-            return in.readObject();
+            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            return objectInputStream.readObject();
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return null;

@@ -1,6 +1,6 @@
-package com.main.connect4server.models;
+package com.main.connect4shared.request;
 
-import com.main.connect4server.models.enums.RequestOperation;
+import com.main.connect4shared.domain.GenericEntity;
 
 import java.io.Serializable;
 

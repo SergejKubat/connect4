@@ -1,4 +1,4 @@
-package com.main.connect4server.models.enums;
+package com.main.connect4shared.response;
 
 /**
  * <p>Java class for responseStatus.
@@ -7,7 +7,7 @@ package com.main.connect4server.models.enums;
  * <p>
  * <pre>
  * &lt;simpleType name="responseStatus">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *   &lt;restriction base="{<a href="http://www.w3.org/2001/XMLSchema">...</a>}string">
  *     &lt;enumeration value="SUCCESS"/>
  *     &lt;enumeration value="ERROR"/>
  *     &lt;enumeration value="PLAYER1_WON"/>

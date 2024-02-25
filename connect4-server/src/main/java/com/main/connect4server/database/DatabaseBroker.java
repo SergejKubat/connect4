@@ -1,6 +1,6 @@
 package com.main.connect4server.database;
 
-import com.main.connect4server.models.GenericEntity;
+import com.main.connect4shared.domain.GenericEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,14 +15,11 @@ public class DatabaseBroker implements DatabaseRepository {
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        // String query = "SELECT * FROM " + entity.getTableName() + " ORDER BY " + entity.getOrderCondition();
+        String query = "SELECT * FROM " + entity.getTableName() + " ORDER BY " + entity.getOrderCondition();
 
-        String query = "SELECT * FROM ? ORDER BY ?";
+        System.out.println("Find all query: " + query);
 
         PreparedStatement statement = connection.prepareStatement(query);
-
-        statement.setString(1, entity.getTableName());
-        statement.setString(2, entity.getOrderCondition());
 
         ResultSet resultSet = statement.executeQuery(query);
 
@@ -39,14 +36,11 @@ public class DatabaseBroker implements DatabaseRepository {
     public GenericEntity find(GenericEntity entity) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        // String query = "SELECT * FROM " + entity.getTableName() + " WHERE " + entity.getWhereCondition();
+        String query = "SELECT * FROM " + entity.getTableName() + " WHERE " + entity.getWhereCondition();
 
-        String query = "SELECT * FROM ? WHERE ?";
+        System.out.println("Find query: " + query);
 
         PreparedStatement statement = connection.prepareStatement(query);
-
-        statement.setString(1, entity.getTableName());
-        statement.setString(2, entity.getWhereCondition());
 
         ResultSet resultSet = statement.executeQuery(query);
 
@@ -63,17 +57,15 @@ public class DatabaseBroker implements DatabaseRepository {
     public Long insert(GenericEntity entity) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        /*String query = "INSERT INTO " + entity.getTableName() + " (" + entity.getAtrNames() + ") VALUES " +
-                "(" + entity.getAtrValues() + ")";*/
+        System.out.println("HELLO MOTHER FUCKER!!!");
 
-        String query = "INSERT INTO ? (?) VALUES (?)";
+        String query = "INSERT INTO " + entity.getTableName() + " (" + entity.getAtrNames() + ") VALUES " +
+                "(" + entity.getAtrValues() + ")";
+
+        System.out.println("Insert query: " + query);
 
         PreparedStatement statement = connection.prepareStatement(query,
                 PreparedStatement.RETURN_GENERATED_KEYS);
-
-        statement.setString(1, entity.getTableName());
-        statement.setString(2, entity.getAtrNames());
-        statement.setString(3, entity.getAtrValues());
 
         statement.executeUpdate();
 
@@ -90,16 +82,12 @@ public class DatabaseBroker implements DatabaseRepository {
     public void update(GenericEntity entity) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        /*String query = "UPDATE " + entity.getTableName() + " SET " + entity.getUpdateQuery()
-                + " WHERE id=" + entity.getIdentificator();*/
+        String query = "UPDATE " + entity.getTableName() + " SET " + entity.getUpdateQuery()
+                + " WHERE id=" + entity.getIdentificator();
 
-        String query = "UPDATE ? SET ? WHERE id = ?";
+        System.out.println("Update query: " + query);
 
         PreparedStatement statement = connection.prepareStatement(query);
-
-        statement.setString(1, entity.getTableName());
-        statement.setString(2, entity.getUpdateQuery());
-        statement.setString(3, entity.getIdentificator());
 
         statement.executeUpdate();
     }

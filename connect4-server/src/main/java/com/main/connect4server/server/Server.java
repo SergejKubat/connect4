@@ -6,20 +6,28 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Server extends Thread {
     public static int PLAYER1 = 1;
+
     public static int PLAYER2 = 2;
+
     public static int PLAYER1_WON = 5;
+
     public static int PLAYER2_WON = 8;
+
     public static int DRAW = 3;
+
     public static int CONTINUE = 4;
 
     public static final int COLS = 7;
+
     public static final int ROWS = 6;
 
     private final ServerSocket serverSocket;
-    private final ArrayList<ClientThread> players;
+
+    private final List<ClientThread> players;
 
 
     public Server(int port) throws IOException {
@@ -30,25 +38,21 @@ public class Server extends Thread {
     @Override
     public void run() {
         try {
-            while (!isInterrupted()) {
+            while (!this.isInterrupted()) {
                 Socket socket = serverSocket.accept();
 
-                ClientThread handleClientRequest = new ClientThread(socket);
+                System.out.println("Socket exists: " + socket.toString());
 
-                players.add(handleClientRequest);
+                // handle client request
+                ClientThread clientThread = new ClientThread(socket);
 
-                handleClientRequest.start();
+                players.add(clientThread);
+
+                clientThread.start();
             }
+            System.out.println("No longer accepting connections!");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-        }
-    }
-
-    public void stopServer() throws IOException {
-        serverSocket.close();
-
-        for (ClientThread player : players) {
-            player.getSocket().close();
         }
     }
 }

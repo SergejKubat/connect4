@@ -1,13 +1,13 @@
 package com.main.connect4server.controllers.server;
 
 import com.main.connect4server.database.DatabaseBroker;
-import com.main.connect4server.models.GenericEntity;
 import com.main.connect4server.operations.GetAllPlayersOperation;
 import com.main.connect4server.operations.SignInOperation;
 import com.main.connect4server.operations.SignUpOperation;
 import com.main.connect4server.operations.UpdatePlayerOperation;
 import com.main.connect4server.operations.generic.AbstractGenericOperation;
 import com.main.connect4server.repositories.CustomRepository;
+import com.main.connect4shared.domain.GenericEntity;
 
 import java.util.List;
 

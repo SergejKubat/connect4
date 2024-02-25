@@ -2,6 +2,7 @@ module com.main.connect4server {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires connect.shared;
 
     opens com.main.connect4server to javafx.fxml;
     exports com.main.connect4server;

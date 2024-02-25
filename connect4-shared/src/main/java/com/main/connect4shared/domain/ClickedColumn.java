@@ -1,4 +1,7 @@
-package com.main.connect4client.models;
+package com.main.connect4shared.domain;
+
+import java.sql.ResultSet;
+import java.util.List;
 
 public class ClickedColumn implements GenericEntity {
     private int column;
@@ -80,7 +83,17 @@ public class ClickedColumn implements GenericEntity {
     }
 
     @Override
+    public List<GenericEntity> getList(ResultSet resultSet) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public String getOrderCondition() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public GenericEntity getNewRecord(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
