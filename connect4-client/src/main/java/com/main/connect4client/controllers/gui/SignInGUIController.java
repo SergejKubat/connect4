@@ -1,10 +1,15 @@
 package com.main.connect4client.controllers.gui;
 
 import com.main.connect4client.Main;
+import com.main.connect4client.controllers.client.ClientController;
 import com.main.connect4client.controllers.fxml.SignInController;
+import com.main.connect4client.utils.Message;
+import com.main.connect4client.utils.Session;
 import com.main.connect4client.utils.Validator;
+import com.main.connect4shared.domain.Player;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,22 +24,24 @@ public class SignInGUIController {
     }
 
     public void singIn() {
-//        String username = this.signInController.usernameInput.getText();
-//        String password = this.signInController.passwordInput.getText();
-//
-//        boolean validationResult = validateInputs(username, password);
-//
-//        if (!validationResult) {
-//            return;
-//        }
-//
-//        // send credentials to remote server
-//        boolean success = false;
-//
-//        if (!success) {
-//            Message.showMessage("Server error.", Alert.AlertType.ERROR);
-//            return;
-//        }
+        String username = this.signInController.usernameInput.getText();
+        String password = this.signInController.passwordInput.getText();
+
+        boolean validationResult = validateInputs(username, password);
+
+        if (!validationResult) {
+            return;
+        }
+
+        try {
+            Player player = ClientController.getInstance().signIn(username, password);
+
+            Session.getInstance().setPlayer(player);
+
+            openMainPage();
+        } catch (Exception ex) {
+            Message.showMessage(ex.getMessage(), Alert.AlertType.ERROR);
+        }
 
         Stage stage = (Stage) this.signInController.signInContainer.getScene().getWindow();
 
@@ -70,6 +77,21 @@ public class SignInGUIController {
     private void clearInputErrors() {
         this.signInController.usernameInputError.setVisible(false);
         this.signInController.passwordInputError.setVisible(false);
+    }
+
+    public void openMainPage() {
+        Stage stage = (Stage) this.signInController.signInContainer.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+
+        try {
+            Scene scene = new Scene(fxmlLoader.load());
+
+            stage.setScene(scene);
+            stage.setTitle("Connect4 - Main");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void openSignUpPage() {
