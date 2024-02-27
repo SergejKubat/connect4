@@ -14,7 +14,7 @@ import java.util.List;
 public class ServerController {
     private static ServerController instance;
 
-    private CustomRepository repository;
+    private final CustomRepository repository;
 
     private ServerController() {
         repository = new DatabaseBroker();

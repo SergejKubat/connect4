@@ -1,4 +1,4 @@
-package com.main.connect4client.utils;
+package com.main.connect4shared.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

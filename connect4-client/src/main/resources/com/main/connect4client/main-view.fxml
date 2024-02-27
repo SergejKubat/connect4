@@ -52,7 +52,7 @@
         </ImageView>
     </HBox>
     <HBox alignment="CENTER" layoutY="220.0" prefWidth="800.0">
-        <Label text="Welcome, User!" textFill="WHITE">
+        <Label fx:id="welcomeLabel" text="Welcome, User!" textFill="WHITE">
             <font>
                 <Font name="Arial" size="32.0"/>
             </font>
@@ -76,7 +76,7 @@
                     <Font name="Arial" size="14.0"/>
                 </font>
             </Label>
-            <Label layoutX="10.0" layoutY="18.0" text="user@gmail.com" textFill="WHITE" GridPane.columnIndex="1"
+            <Label fx:id="emailLabel" layoutX="10.0" layoutY="18.0" textFill="WHITE" GridPane.columnIndex="1"
                    GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <font>
                     <Font name="Arial" size="14.0"/>
@@ -88,7 +88,7 @@
                     <Font name="Arial" size="14.0"/>
                 </font>
             </Label>
-            <Label layoutX="10.0" layoutY="48.0" text="22" textFill="WHITE" GridPane.columnIndex="1"
+            <Label fx:id="winsLabel" layoutX="10.0" layoutY="48.0" textFill="WHITE" GridPane.columnIndex="1"
                    GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                 <font>
                     <Font name="Arial" size="14.0"/>
@@ -100,7 +100,7 @@
                     <Font name="Arial" size="14.0"/>
                 </font>
             </Label>
-            <Label layoutX="10.0" layoutY="78.0" text="8" textFill="WHITE" GridPane.columnIndex="1"
+            <Label fx:id="defeatsLabel" layoutX="10.0" layoutY="78.0" textFill="WHITE" GridPane.columnIndex="1"
                    GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                 <font>
                     <Font name="Arial" size="14.0"/>
@@ -112,7 +112,7 @@
                     <Font name="Arial" size="14.0"/>
                 </font>
             </Label>
-            <Label layoutX="10.0" layoutY="108.0" text="30" textFill="WHITE" GridPane.columnIndex="1"
+            <Label fx:id="matchesPlayedLabel" layoutX="10.0" layoutY="108.0" textFill="WHITE" GridPane.columnIndex="1"
                    GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                 <font>
                     <Font name="Arial" size="14.0"/>
@@ -124,7 +124,7 @@
                     <Font name="Arial" size="14.0"/>
                 </font>
             </Label>
-            <Label layoutX="10.0" layoutY="140.0" text="02/18/2024" textFill="WHITE" GridPane.columnIndex="1"
+            <Label fx:id="registeredAtLabel" layoutX="10.0" layoutY="140.0" textFill="WHITE" GridPane.columnIndex="1"
                    GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                 <font>
                     <Font name="Arial" size="14.0"/>

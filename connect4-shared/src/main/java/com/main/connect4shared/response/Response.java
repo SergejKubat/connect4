@@ -1,5 +1,7 @@
 package com.main.connect4shared.response;
 
+import java.io.Serializable;
+
 /**
  * <p>Java class for response complex type.
  *
@@ -22,7 +24,7 @@ package com.main.connect4shared.response;
  * &lt;/complexType>
  * </pre>
  */
-public class Response {
+public class Response implements Serializable {
     private Exception exception;
 
     private String message;

@@ -2,6 +2,8 @@ package com.main.connect4client.controllers.gui;
 
 import com.main.connect4client.Main;
 import com.main.connect4client.controllers.fxml.MainController;
+import com.main.connect4client.utils.Session;
+import com.main.connect4shared.domain.Player;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -9,6 +11,8 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class MainGUIController {
     private final MainController mainController;
@@ -21,6 +25,19 @@ public class MainGUIController {
         this.mainController.tutorialItem.setOnAction(event -> openTutorial());
         this.mainController.aboutItem.setOnAction(event -> openAboutPage());
         this.mainController.signOutBtn.setOnAction(event -> signOut());
+
+        // set player data
+        Player currentPlayer = Session.getInstance().getPlayer();
+
+        this.mainController.welcomeLabel.setText("Welcome, " + currentPlayer.getUsername());
+        this.mainController.emailLabel.setText(currentPlayer.getEmail());
+        this.mainController.winsLabel.setText(String.valueOf(currentPlayer.getWins()));
+        this.mainController.defeatsLabel.setText(String.valueOf(currentPlayer.getDefeats()));
+        this.mainController.matchesPlayedLabel.setText(String.valueOf(currentPlayer.getDefeats() + currentPlayer.getDefeats()));
+
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+        this.mainController.registeredAtLabel.setText(dateFormat.format(currentPlayer.getRegisteredAt()));
     }
 
     public void openNewMatchPage() {

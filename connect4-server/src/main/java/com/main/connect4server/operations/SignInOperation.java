@@ -1,21 +1,33 @@
 package com.main.connect4server.operations;
 
 import com.main.connect4server.operations.generic.AbstractGenericOperation;
+import com.main.connect4server.utils.HashUtil;
 import com.main.connect4shared.domain.GenericEntity;
 import com.main.connect4shared.domain.Player;
+import com.main.connect4shared.utils.Validator;
 
 public class SignInOperation extends AbstractGenericOperation<Player> {
     GenericEntity object;
 
-    // @TODO: validate with regex
     @Override
     protected void validate(Player entity) throws Exception {
-        if (entity.getUsername() == null || entity.getUsername().isEmpty()) {
+        String username = entity.getUsername();
+        String password = entity.getPassword();
+
+        if (username == null || username.isEmpty()) {
             throw new Exception("Username is required.");
         }
 
-        if (entity.getPassword() == null || entity.getPassword().isEmpty()) {
+        if (!Validator.validateUsername(username)) {
+            throw new Exception("Username is not in valid format.");
+        }
+
+        if (password == null || password.isEmpty()) {
             throw new Exception("Password is required.");
+        }
+
+        if (!Validator.validatePassword(password)) {
+            throw new Exception("Password is not in valid format.");
         }
     }
 
@@ -24,11 +36,14 @@ public class SignInOperation extends AbstractGenericOperation<Player> {
         Player player = (Player) super.repository.find(new Player(entity.getUsername()));
 
         if (player == null) {
-            throw new RuntimeException("Invalid username");
+            throw new RuntimeException("Invalid username and/or password.");
         }
 
-        if (!player.getPassword().equals(entity.getPassword())) {
-            throw new RuntimeException("Invalid password.");
+        String providedPassword = HashUtil.hash(entity.getPassword());
+        String storedPassword = player.getPassword();
+
+        if (!providedPassword.equals(storedPassword)) {
+            throw new RuntimeException("Invalid username and/or password.");
         }
 
         object = player;

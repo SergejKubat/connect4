@@ -1,5 +1,7 @@
 package com.main.connect4shared.response;
 
+import java.io.Serializable;
+
 /**
  * <p>Java class for responseStatus.
  *
@@ -18,7 +20,7 @@ package com.main.connect4shared.response;
  * &lt;/simpleType>
  * </pre>
  */
-public enum ResponseStatus {
+public enum ResponseStatus implements Serializable {
     SUCCESS("SUCCESS"),
     ERROR("ERROR"),
     PLAYER_1_WON("PLAYER1_WON"),

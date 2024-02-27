@@ -33,8 +33,6 @@ public class Server extends Thread {
             while (!this.isInterrupted()) {
                 Socket socket = serverSocket.accept();
 
-                System.out.println("Socket exists: " + socket.toString());
-
                 // handle client request
                 ClientThread clientThread = new ClientThread(socket);
 
@@ -42,7 +40,6 @@ public class Server extends Thread {
 
                 clientThread.start();
             }
-            System.out.println("No longer accepting connections!");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

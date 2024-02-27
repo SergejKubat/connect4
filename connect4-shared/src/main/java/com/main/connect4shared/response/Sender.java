@@ -18,7 +18,7 @@ public class Sender implements Serializable {
             objectOutputStream.writeObject(object);
             objectOutputStream.flush();
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }

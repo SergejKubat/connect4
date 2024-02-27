@@ -71,10 +71,11 @@ public class Player implements GenericEntity {
         this.registeredAt = registeredAt;
     }
 
-    public Player(Long id, String username, String email, int wins, int defeats, Date registeredAt) {
+    public Player(Long id, String username, String email, String password, int wins, int defeats, Date registeredAt) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.password = password;
         this.wins = wins;
         this.defeats = defeats;
         this.registeredAt = registeredAt;
@@ -283,11 +284,12 @@ public class Player implements GenericEntity {
             Long id = resultSet.getLong("id");
             String username = resultSet.getString("username");
             String email = resultSet.getString("email");
+            String password = resultSet.getString("password");
             int wins = resultSet.getInt("wins");
             int defeats = resultSet.getInt("defeats");
             Date registeredAt = resultSet.getDate("registeredAt");
 
-            Player p = new Player(id, username, email, wins, defeats, registeredAt);
+            Player p = new Player(id, username, email, password, wins, defeats, registeredAt);
 
             list.add(p);
         }
@@ -306,11 +308,12 @@ public class Player implements GenericEntity {
             Long id = resultSet.getLong("id");
             String username = resultSet.getString("username");
             String email = resultSet.getString("email");
+            String password = resultSet.getString("password");
             int wins = resultSet.getInt("wins");
             int defeats = resultSet.getInt("defeats");
             Date registeredAt = resultSet.getDate("registeredAt");
 
-            return new Player(id, username, email, wins, defeats, registeredAt);
+            return new Player(id, username, email, password, wins, defeats, registeredAt);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

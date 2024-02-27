@@ -46,6 +46,7 @@ public class ClientThread extends Thread {
         while (!isInterrupted()) {
             try {
                 Request request = (Request) this.receiver.receive();
+
                 Response response = new Response();
 
                 RequestOperation requestOperation = request.getOperation();
@@ -60,8 +61,8 @@ public class ClientThread extends Thread {
                             response.setResult(object);
                             response.setStatus(ResponseStatus.SUCCESS);
                         } catch (Exception ex) {
-                            response.setStatus(ResponseStatus.ERROR);
                             response.setException(ex);
+                            response.setStatus(ResponseStatus.ERROR);
                         }
 
                         this.computerPlayer = new ComputerPlayer();
@@ -77,8 +78,8 @@ public class ClientThread extends Thread {
                             response.setResult(object);
                             response.setStatus(ResponseStatus.SUCCESS);
                         } catch (Exception ex) {
-                            response.setStatus(ResponseStatus.ERROR);
                             response.setException(ex);
+                            response.setStatus(ResponseStatus.ERROR);
                         }
 
                         this.computerPlayer = new ComputerPlayer();
@@ -179,7 +180,6 @@ public class ClientThread extends Thread {
                     }
                 }
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
                 ex.printStackTrace();
                 DatabaseConnection.getInstance().closeConnection();
             }

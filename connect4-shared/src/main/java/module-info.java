@@ -4,4 +4,5 @@ module connect.shared {
     exports com.main.connect4shared.domain;
     exports com.main.connect4shared.request;
     exports com.main.connect4shared.response;
+    exports com.main.connect4shared.utils;
 }
