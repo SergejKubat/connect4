@@ -23,16 +23,26 @@ import java.util.Optional;
 
 public class MatchGUIController {
     private static final double PLACEHOLDER_SIZE = 60;
+
     private static final int COLUMNS = 7;
+
     private static final int ROWS = 6;
-    private final MatchController matchController;
+
     private boolean continueToPlay = true;
+
     private boolean playerOneMove = false;
-    private final Token[][] board = new Token[COLUMNS][ROWS];
+
     private boolean playerOneTurn = false;
+
     private boolean waiting = true;
+
     private int rowSelected;
+
     private int columnSelected;
+
+    private final Token[][] board = new Token[COLUMNS][ROWS];
+
+    private final MatchController matchController;
 
     public MatchGUIController(MatchController matchController) {
         this.matchController = matchController;
@@ -77,6 +87,8 @@ public class MatchGUIController {
     }
 
     private List<Rectangle> generateColumns() {
+        connectToServer();
+
         List<Rectangle> list = new ArrayList<>();
 
         for (int x = 0; x < COLUMNS; x++) {
@@ -97,9 +109,11 @@ public class MatchGUIController {
             rectangle.setOnMouseClicked((MouseEvent event) -> {
                 try {
                     int row = ClientController.getInstance().getAvailableRow(column);
+
                     if (row != -1) {
                         if (playerOneTurn) {
                             placeToken(new Token(playerOneMove), column, row);
+
                             playerOneTurn = false;
                             rowSelected = row;
                             columnSelected = column;
@@ -132,7 +146,7 @@ public class MatchGUIController {
         animation.play();
     }
 
-    private void connectToSrv() {
+    private void connectToServer() {
         new Thread(() -> {
             try {
                 playerOneMove = true;
@@ -161,10 +175,11 @@ public class MatchGUIController {
 
     private Response sendMove() {
         Response response = null;
+
         try {
             response = ClientController.getInstance().sendMove(rowSelected, columnSelected);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return response;
@@ -174,24 +189,32 @@ public class MatchGUIController {
 
         if (response.getStatus() == ResponseStatus.PLAYER_1_WON) {
             continueToPlay = false;
+
+            System.out.println("You won!");
             // Platform.runLater(() -> showAlert("Congratulations", "You won! Player wins updated!"));
             // Platform.runLater(() -> GameStage.getInstance().setScene("client/forms/main/FXMLMain.fxml"));
         } else if (response.getStatus() == ResponseStatus.PLAYER_2_WON) {
             continueToPlay = false;
+
             receiveMove((GameMove) response.getResult());
+
+            System.out.println("Computer player has won!");
             // Platform.runLater(() -> showAlert("Game over", "Computer has won! Player wins updated!"));
             // Platform.runLater(() -> GameStage.getInstance().setScene("client/forms/main/FXMLMain.fxml"));
         } else if (response.getStatus() == ResponseStatus.DRAW) {
             continueToPlay = false;
+
+            System.out.println("No winner!");
             // Platform.runLater(() -> showAlert("Game over", "No winner!"));
             // Platform.runLater(() -> GameStage.getInstance().setScene("client/forms/main/FXMLMain.fxml"));
         } else if (response.getStatus() == ResponseStatus.ERROR) {
+            System.out.println("Player wins did not update!");
             // showAlert("Error", "Player wins did not update");
-            System.out.println("Player wins did not update");
         } else {
             receiveMove((GameMove) response.getResult());
+            System.out.println("Your turn!");
             // Platform.runLater(() -> lblStatus.setText("Your turn"));
-            playerOneTurn = true; // It is my turn
+            playerOneTurn = true;
         }
     }
 
@@ -199,20 +222,13 @@ public class MatchGUIController {
         try {
             int row = move.getRow();
             int column = move.getCol();
+
             System.out.println("Server move: " + row + " " + column);
+
             Platform.runLater(() -> placeToken(new Token(!playerOneMove), column, row));
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
-    }
-
-    private Optional<Token> getToken(int column, int row) {
-        if (column < 0 || column >= COLUMNS
-                || row < 0 || row >= ROWS) {
-            return Optional.empty();
-        }
-
-        return Optional.ofNullable(board[column][row]);
     }
 
     private static class Token extends Circle {

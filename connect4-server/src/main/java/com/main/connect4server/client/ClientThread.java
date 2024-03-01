@@ -3,7 +3,6 @@ package com.main.connect4server.client;
 import com.main.connect4server.controllers.server.ServerController;
 import com.main.connect4server.database.DatabaseConnection;
 import com.main.connect4server.models.enums.GameState;
-import com.main.connect4server.server.Server;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.GenericEntity;
@@ -38,12 +37,12 @@ public class ClientThread extends Thread {
         try {
             handleRequest();
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
     private void handleRequest() throws Exception {
-        while (!isInterrupted()) {
+        while (!this.isInterrupted()) {
             try {
                 Request request = (Request) this.receiver.receive();
 
@@ -54,11 +53,11 @@ public class ClientThread extends Thread {
                 switch (requestOperation) {
                     case SIGN_UP -> {
                         try {
-                            GenericEntity object = ServerController.getInstance().signUp(request.getData());
+                            GenericEntity player = ServerController.getInstance().signUp(request.getData());
 
-                            ClientSession.getInstance().getPlayers().add((Player) object);
+                            ClientSession.getInstance().getPlayers().add((Player) player);
 
-                            response.setResult(object);
+                            response.setResult(player);
                             response.setStatus(ResponseStatus.SUCCESS);
                         } catch (Exception ex) {
                             response.setException(ex);
@@ -71,11 +70,11 @@ public class ClientThread extends Thread {
                     }
                     case SIGN_IN -> {
                         try {
-                            GenericEntity object = ServerController.getInstance().signIn(request.getData());
+                            GenericEntity player = ServerController.getInstance().signIn(request.getData());
 
-                            ClientSession.getInstance().getPlayers().add((Player) object);
+                            ClientSession.getInstance().getPlayers().add((Player) player);
 
-                            response.setResult(object);
+                            response.setResult(player);
                             response.setStatus(ResponseStatus.SUCCESS);
                         } catch (Exception ex) {
                             response.setException(ex);
@@ -93,16 +92,18 @@ public class ClientThread extends Thread {
                             response.setResult(players);
                             response.setStatus(ResponseStatus.SUCCESS);
                         } catch (Exception ex) {
-                            response.setStatus(ResponseStatus.ERROR);
                             response.setException(ex);
+                            response.setStatus(ResponseStatus.ERROR);
                         }
 
                         sender.send(response);
                     }
                     case GET_AVAILABLE_ROW -> {
-                        ClickedColumn c1 = (ClickedColumn) request.getData();
+                        ClickedColumn clickedColumn = (ClickedColumn) request.getData();
 
-                        int firstEmptyRow = computerPlayer.getFirstEmptyRow(c1.getColumn());
+                        System.out.println("Clicked column: " + clickedColumn.getColumn());
+
+                        int firstEmptyRow = this.computerPlayer.getFirstEmptyRow(clickedColumn.getColumn());
 
                         response.setResult(firstEmptyRow);
 
@@ -113,10 +114,10 @@ public class ClientThread extends Thread {
 
                         int column = move.getCol();
 
-                        gameState = computerPlayer.updateBoard(column, 'X');
+                        this.gameState = this.computerPlayer.updateBoard(column, 'X');
 
                         // Check if human player wins
-                        if (gameState == GameState.XWin) {
+                        if (this.gameState == GameState.XWin) {
                             Player winner = ClientSession.getInstance().getPlayers().get(0);
 
                             int currentWins = winner.getWins();
@@ -130,7 +131,7 @@ public class ClientThread extends Thread {
                             sender.send(response);
 
                             break;
-                        } else if (gameState == GameState.DRAW) {
+                        } else if (this.gameState == GameState.DRAW) {
                             response.setResult(ResponseStatus.DRAW);
 
                             sender.send(response);
@@ -143,16 +144,18 @@ public class ClientThread extends Thread {
                         int computerColumn;
                         int computerRow;
 
+                        int columns = 7;
+
                         do {
-                            computerColumn = Math.abs(rand.nextInt() % Server.COLS);
-                            computerRow = computerPlayer.getFirstEmptyRow(computerColumn);
+                            computerColumn = Math.abs(rand.nextInt() % columns);
+                            computerRow = this.computerPlayer.getFirstEmptyRow(computerColumn);
                         } while (computerRow == -1);
 
                         // Generate a move from computer player
-                        gameState = computerPlayer.updateBoard(computerColumn, 'O');
+                        this.gameState = computerPlayer.updateBoard(computerColumn, 'O');
 
                         // Check if computer player wins
-                        if (gameState == GameState.OWin) {
+                        if (this.gameState == GameState.OWin) {
                             response.setStatus(ResponseStatus.PLAYER_2_WON);
                             response.setResult(new GameMove(computerRow, computerColumn));
 
@@ -165,7 +168,7 @@ public class ClientThread extends Thread {
                             ServerController.getInstance().updatePlayerWins(loser);
 
                             sender.send(response);
-                        } else if (gameState == GameState.DRAW) {
+                        } else if (this.gameState == GameState.DRAW) {
                             response.setStatus(ResponseStatus.DRAW);
 
                             sender.send(response);

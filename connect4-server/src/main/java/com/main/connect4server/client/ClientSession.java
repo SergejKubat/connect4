@@ -1,14 +1,14 @@
 package com.main.connect4server.client;
 
-import com.main.connect4shared.domain.GenericEntity;
 import com.main.connect4shared.domain.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClientSession {
     private static ClientSession instance;
 
-    private ArrayList<Player> players;
+    private final List<Player> players;
 
     private ClientSession() {
         players = new ArrayList<>();
@@ -21,40 +21,7 @@ public class ClientSession {
         return instance;
     }
 
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
-    }
-
-    public int getIndexOfPlayer(Player player) {
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getId().equals(player.getId()))
-                return i;
-        }
-
-        return -1;
-    }
-
-    public void addPlayer(GenericEntity object) {
-        if (object instanceof Player) {
-            if (!players.contains(object)) {
-                players.add((Player) object);
-            }
-        }
-    }
-
-    public void removePlayer(Object object) {
-        try {
-            if (object instanceof Player) {
-                for (Player player : players) {
-                    players.remove(object);
-                }
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public void logoutAll() {
-        players = new ArrayList<>();
     }
 }
