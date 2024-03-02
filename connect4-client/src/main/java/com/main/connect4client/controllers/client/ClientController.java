@@ -1,6 +1,5 @@
 package com.main.connect4client.controllers.client;
 
-import com.main.connect4client.utils.ClientSocket;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.Player;
@@ -9,18 +8,27 @@ import com.main.connect4shared.request.RequestOperation;
 import com.main.connect4shared.response.Response;
 import com.main.connect4shared.response.ResponseStatus;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 public class ClientController {
     private static ClientController instance;
 
-    private final ClientSocket clientSocket;
+    private Socket socket;
 
     private ClientController() {
-        clientSocket = new ClientSocket();
+        try {
+            socket = new Socket("localhost", 5000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static synchronized ClientController getInstance() {
         if (instance == null) {
-            return new ClientController();
+            instance = new ClientController();
         }
 
         return instance;
@@ -31,9 +39,11 @@ public class ClientController {
 
         Request request = new Request(RequestOperation.SIGN_IN, player);
 
-        clientSocket.send(request);
+        send(request);
 
-        Response response = clientSocket.read();
+        Response response = read();
+
+        assert response != null;
 
         if (response.getStatus() == ResponseStatus.SUCCESS) {
             return (Player) response.getResult();
@@ -47,9 +57,11 @@ public class ClientController {
 
         Request request = new Request(RequestOperation.SIGN_UP, player);
 
-        clientSocket.send(request);
+        send(request);
 
-        Response response = clientSocket.read();
+        Response response = read();
+
+        assert response != null;
 
         if (response.getStatus() == ResponseStatus.SUCCESS) {
             return (Player) response.getResult();
@@ -61,9 +73,11 @@ public class ClientController {
     public int startMatch() {
         Request request = new Request(RequestOperation.START_MATCH, null);
 
-        clientSocket.send(request);
+        send(request);
 
-        Response response = clientSocket.read();
+        Response response = read();
+
+        assert response != null;
 
         return (int) response.getResult();
     }
@@ -73,9 +87,11 @@ public class ClientController {
 
         Request request = new Request(RequestOperation.GET_AVAILABLE_ROW, chooseColumn);
 
-        clientSocket.send(request);
+        send(request);
 
-        Response response = clientSocket.read();
+        Response response = read();
+
+        assert response != null;
 
         return (int) response.getResult();
     }
@@ -85,14 +101,35 @@ public class ClientController {
 
         Request request = new Request(RequestOperation.SEND_MOVE, move);
 
-        clientSocket.send(request);
+        send(request);
 
-        return clientSocket.read();
+        return read();
     }
 
     public GameMove receiveMove() {
-        Response response = clientSocket.read();
+        Response response = read();
+
+        assert response != null;
 
         return (GameMove) response.getResult();
+    }
+
+    private void send(Request request) {
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.writeObject(request);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private Response read() {
+        try {
+            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            return (Response) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

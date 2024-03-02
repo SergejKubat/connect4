@@ -7,48 +7,50 @@ import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.GenericEntity;
 import com.main.connect4shared.domain.Player;
-import com.main.connect4shared.request.Receiver;
 import com.main.connect4shared.request.Request;
 import com.main.connect4shared.request.RequestOperation;
 import com.main.connect4shared.response.Response;
 import com.main.connect4shared.response.ResponseStatus;
-import com.main.connect4shared.response.Sender;
 
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
-public class ClientThread extends Thread {
-    private final Receiver receiver;
-
-    private final Sender sender;
+public class ClientThread implements Runnable {
+    private final Socket socket;
 
     ComputerPlayer computerPlayer;
 
     GameState gameState;
 
+    private ObjectInputStream in;
+
+    private ObjectOutputStream out;
+
+    private boolean running;
+
     public ClientThread(Socket socket) {
-        this.receiver = new Receiver(socket);
-        this.sender = new Sender(socket);
+        this.socket = socket;
+        this.computerPlayer = new ComputerPlayer();
+        this.running = true;
     }
 
     @Override
     public void run() {
-        try {
-            handleRequest();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private void handleRequest() throws Exception {
-        while (!this.isInterrupted()) {
+        while (running) {
             try {
-                Request request = (Request) this.receiver.receive();
+                Request request = (Request) read();
 
-                Response response = new Response();
+                assert request != null;
 
                 RequestOperation requestOperation = request.getOperation();
+
+                Response response = new Response();
 
                 switch (requestOperation) {
                     case SIGN_UP -> {
@@ -64,9 +66,7 @@ public class ClientThread extends Thread {
                             response.setStatus(ResponseStatus.ERROR);
                         }
 
-                        this.computerPlayer = new ComputerPlayer();
-
-                        sender.send(response);
+                        send(response);
                     }
                     case SIGN_IN -> {
                         try {
@@ -81,9 +81,7 @@ public class ClientThread extends Thread {
                             response.setStatus(ResponseStatus.ERROR);
                         }
 
-                        this.computerPlayer = new ComputerPlayer();
-
-                        sender.send(response);
+                        send(response);
                     }
                     case GET_PLAYERS -> {
                         try {
@@ -96,18 +94,16 @@ public class ClientThread extends Thread {
                             response.setStatus(ResponseStatus.ERROR);
                         }
 
-                        sender.send(response);
+                        send(response);
                     }
                     case GET_AVAILABLE_ROW -> {
                         ClickedColumn clickedColumn = (ClickedColumn) request.getData();
-
-                        System.out.println("Clicked column: " + clickedColumn.getColumn());
 
                         int firstEmptyRow = this.computerPlayer.getFirstEmptyRow(clickedColumn.getColumn());
 
                         response.setResult(firstEmptyRow);
 
-                        sender.send(response);
+                        send(response);
                     }
                     case SEND_MOVE -> {
                         GameMove move = (GameMove) request.getData();
@@ -128,13 +124,13 @@ public class ClientThread extends Thread {
 
                             response.setStatus(ResponseStatus.PLAYER_1_WON);
 
-                            sender.send(response);
+                            send(response);
 
                             break;
                         } else if (this.gameState == GameState.DRAW) {
                             response.setResult(ResponseStatus.DRAW);
 
-                            sender.send(response);
+                            send(response);
 
                             break;
                         }
@@ -167,25 +163,67 @@ public class ClientThread extends Thread {
 
                             ServerController.getInstance().updatePlayerWins(loser);
 
-                            sender.send(response);
+                            send(response);
                         } else if (this.gameState == GameState.DRAW) {
                             response.setStatus(ResponseStatus.DRAW);
 
-                            sender.send(response);
+                            send(response);
                         } else {
                             // Notify human player to take the turn
                             response.setStatus(ResponseStatus.CONTINUE);
                             // Send computer player's selected row and computerColumn to player 1
                             response.setResult(new GameMove(computerRow, computerColumn));
 
-                            sender.send(response);
+                            send(response);
                         }
                     }
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                DatabaseConnection.getInstance().closeConnection();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                try {
+                    DatabaseConnection.getInstance().closeConnection();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+                shutdown();
             }
+        }
+    }
+
+    private void send(Object object) {
+        try {
+            out = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            out.writeObject(object);
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Object read() {
+        try {
+            in = new ObjectInputStream(socket.getInputStream());
+            return in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void shutdown() {
+        try {
+            running = false;
+
+            in.close();
+            out.close();
+
+            if (!socket.isClosed()) {
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

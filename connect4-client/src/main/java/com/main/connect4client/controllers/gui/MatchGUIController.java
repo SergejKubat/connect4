@@ -11,6 +11,7 @@ import javafx.scene.Cursor;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MatchGUIController {
-    private static final double PLACEHOLDER_SIZE = 60;
+    private static final double PLACEHOLDER_SIZE = 80;
 
     private static final int COLUMNS = 7;
 
@@ -50,8 +51,8 @@ public class MatchGUIController {
         Shape board = generateBoard();
         List<Rectangle> columns = generateColumns();
 
-        this.matchController.boardContainer.add(board, 0, 0);
-        this.matchController.boardContainer.getChildren().addAll(columns);
+        this.matchController.rootGridPane.add(board, 0, 0);
+        this.matchController.rootGridPane.getChildren().addAll(columns);
     }
 
     private Shape generateBoard() {
@@ -60,7 +61,6 @@ public class MatchGUIController {
         for (int y = 0; y < ROWS; y++) {
             for (int x = 0; x < COLUMNS; x++) {
                 Circle circle = new Circle(PLACEHOLDER_SIZE / 2);
-
                 circle.setCenterX(PLACEHOLDER_SIZE / 2);
                 circle.setCenterY(PLACEHOLDER_SIZE / 2);
                 circle.setTranslateX(x * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
@@ -72,8 +72,8 @@ public class MatchGUIController {
 
         Light.Distant light = new Light.Distant();
 
-        light.setAzimuth(50.0);
-        light.setElevation(25.0);
+        light.setAzimuth(45.0);
+        light.setElevation(30.0);
 
         Lighting lighting = new Lighting();
 
@@ -89,24 +89,22 @@ public class MatchGUIController {
     private List<Rectangle> generateColumns() {
         connectToServer();
 
-        List<Rectangle> list = new ArrayList<>();
+        List<Rectangle> rectangles = new ArrayList<>();
 
         for (int x = 0; x < COLUMNS; x++) {
             Rectangle rectangle = new Rectangle(PLACEHOLDER_SIZE, (ROWS + 1) * PLACEHOLDER_SIZE);
 
             rectangle.setTranslateX(x * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
             rectangle.setFill(Color.TRANSPARENT);
-
-            rectangle.setOnMouseEntered(e -> {
+            rectangle.setOnMouseEntered(event -> {
                 rectangle.setCursor(Cursor.HAND);
                 rectangle.setFill(Color.rgb(122, 136, 171, 0.2));
             });
-
             rectangle.setOnMouseExited(e -> rectangle.setFill(Color.TRANSPARENT));
 
-            final int column = x;
+            int column = x;
 
-            rectangle.setOnMouseClicked((MouseEvent event) -> {
+            rectangle.setOnMouseClicked(event -> {
                 try {
                     int row = ClientController.getInstance().getAvailableRow(column);
 
@@ -117,32 +115,31 @@ public class MatchGUIController {
                             playerOneTurn = false;
                             rowSelected = row;
                             columnSelected = column;
-                            System.out.println("Waiting for server...");
                             waiting = false;
+                            System.out.println("Waiting for server...");
                         }
                     }
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             });
 
-            list.add(rectangle);
+            rectangles.add(rectangle);
         }
 
-        return list;
+        return rectangles;
     }
 
     private void placeToken(Token token, int column, int row) {
         board[column][row] = token;
 
-        this.matchController.boardContainer.getChildren().add(token);
+        this.matchController.gamePane.getChildren().add(token);
 
         token.setTranslateX(column * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
 
         TranslateTransition animation = new TranslateTransition(Duration.seconds(0.5), token);
 
         animation.setToY(row * (PLACEHOLDER_SIZE + 5) + PLACEHOLDER_SIZE / 4);
-
         animation.play();
     }
 
