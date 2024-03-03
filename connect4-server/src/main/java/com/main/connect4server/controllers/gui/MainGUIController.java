@@ -2,9 +2,6 @@ package com.main.connect4server.controllers.gui;
 
 import com.main.connect4server.controllers.fxml.MainController;
 import com.main.connect4server.server.Server;
-import javafx.application.Platform;
-
-import java.io.IOException;
 
 public class MainGUIController {
     MainController mainController;

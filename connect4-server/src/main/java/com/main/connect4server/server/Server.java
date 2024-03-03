@@ -11,10 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server implements Runnable {
-    private ServerSocket serverSocket;
-
     private final List<ClientThread> clientThreads;
-
+    private ServerSocket serverSocket;
     private boolean running;
 
     public Server() {

@@ -18,7 +18,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
-        stage.setTitle("Connect4 - Home");
+        stage.setTitle("Connect4");
         stage.setScene(scene);
         stage.setResizable(false);
 
