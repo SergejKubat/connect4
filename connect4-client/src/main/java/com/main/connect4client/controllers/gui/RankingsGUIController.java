@@ -31,11 +31,11 @@ public class RankingsGUIController {
 
     private static List<Player> getPlayers() {
         return List.of(
-                new Player(1L, "player1", 51, 5, new Date()),
-                new Player(2L, "player2", 42, 8, new Date()),
-                new Player(3L, "player3", 34, 6, new Date()),
-                new Player(4L, "player4", 25, 10, new Date()),
-                new Player(5L, "player5", 18, 12, new Date())
+                new Player(1L, "player1", 51, new Date()),
+                new Player(2L, "player2", 42, new Date()),
+                new Player(3L, "player3", 34, new Date()),
+                new Player(4L, "player4", 25, new Date()),
+                new Player(5L, "player5", 18, new Date())
         );
     }
 
@@ -82,8 +82,6 @@ public class RankingsGUIController {
                 tableRowController.setRank(rank);
                 tableRowController.setUsername(player.getUsername());
                 tableRowController.setWins(player.getWins());
-                tableRowController.setDefeats(player.getDefeats());
-                tableRowController.setMatchesPlayed(player.getWins() + player.getDefeats());
                 tableRowController.setRegisteredAt(new Date());
 
                 this.rankingsController.rankingsData.getChildren().add(tableRow);

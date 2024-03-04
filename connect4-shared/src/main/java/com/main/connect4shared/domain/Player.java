@@ -22,7 +22,6 @@ import java.util.Objects;
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="wins" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="defeats" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="registeredAt" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -40,8 +39,6 @@ public class Player implements GenericEntity {
     private String password;
 
     private int wins;
-
-    private int defeats;
 
     private Date registeredAt;
 
@@ -63,21 +60,19 @@ public class Player implements GenericEntity {
         this.password = password;
     }
 
-    public Player(Long id, String username, int wins, int defeats, Date registeredAt) {
+    public Player(Long id, String username, int wins, Date registeredAt) {
         this.id = id;
         this.username = username;
         this.wins = wins;
-        this.defeats = defeats;
         this.registeredAt = registeredAt;
     }
 
-    public Player(Long id, String username, String email, String password, int wins, int defeats, Date registeredAt) {
+    public Player(Long id, String username, String email, String password, int wins, Date registeredAt) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.wins = wins;
-        this.defeats = defeats;
         this.registeredAt = registeredAt;
     }
 
@@ -182,26 +177,6 @@ public class Player implements GenericEntity {
     }
 
     /**
-     * Gets the value of the defeats' property.
-     *
-     * @return possible object is
-     * {@link int }
-     */
-    public int getDefeats() {
-        return defeats;
-    }
-
-    /**
-     * Sets the value of the defeats' property.
-     *
-     * @param defeats allowed object is
-     *                {@link int }
-     */
-    public void setDefeats(int defeats) {
-        this.defeats = defeats;
-    }
-
-    /**
      * Gets the value of the registeredAt property.
      *
      * @return possible object is
@@ -226,14 +201,14 @@ public class Player implements GenericEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return wins == player.wins && defeats == player.defeats && Objects.equals(id, player.id)
+        return wins == player.wins && Objects.equals(id, player.id)
                 && Objects.equals(username, player.username) && Objects.equals(email, player.email)
                 && Objects.equals(password, player.password) && Objects.equals(registeredAt, player.registeredAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, email, password, wins, defeats, registeredAt);
+        return Objects.hash(id, username, email, password, wins, registeredAt);
     }
 
     @Override
@@ -247,13 +222,12 @@ public class Player implements GenericEntity {
                 "', '" + this.email +
                 "', '" + this.password +
                 "', '" + this.wins +
-                "', '" + this.defeats +
                 "', CURRENT_DATE()";
     }
 
     @Override
     public String getAtrNames() {
-        return "username,email,password,wins,defeats,registeredAt";
+        return "username,email,password,wins,registeredAt";
     }
 
     @Override
@@ -286,10 +260,9 @@ public class Player implements GenericEntity {
             String email = resultSet.getString("email");
             String password = resultSet.getString("password");
             int wins = resultSet.getInt("wins");
-            int defeats = resultSet.getInt("defeats");
             Date registeredAt = resultSet.getDate("registeredAt");
 
-            Player p = new Player(id, username, email, password, wins, defeats, registeredAt);
+            Player p = new Player(id, username, email, password, wins, registeredAt);
 
             list.add(p);
         }
@@ -310,10 +283,9 @@ public class Player implements GenericEntity {
             String email = resultSet.getString("email");
             String password = resultSet.getString("password");
             int wins = resultSet.getInt("wins");
-            int defeats = resultSet.getInt("defeats");
             Date registeredAt = resultSet.getDate("registeredAt");
 
-            return new Player(id, username, email, password, wins, defeats, registeredAt);
+            return new Player(id, username, email, password, wins, registeredAt);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

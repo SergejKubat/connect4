@@ -1,6 +1,6 @@
 package com.main.connect4server.server;
 
-import com.main.connect4server.client.ClientThread;
+import com.main.connect4server.client.ClientHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server implements Runnable {
-    private final List<ClientThread> clientThreads;
+    private final List<ClientHandler> clientThreads;
     private ServerSocket serverSocket;
     private boolean running;
 
@@ -30,7 +30,7 @@ public class Server implements Runnable {
             while (running) {
                 Socket socket = serverSocket.accept();
 
-                ClientThread clientThread = new ClientThread(socket);
+                ClientHandler clientThread = new ClientHandler(socket);
 
                 clientThreads.add(clientThread);
 
@@ -52,7 +52,7 @@ public class Server implements Runnable {
             }
 
             // close all clients socket
-            for (ClientThread clientThread : clientThreads) {
+            for (ClientHandler clientThread : clientThreads) {
                 clientThread.shutdown();
             }
         } catch (IOException e) {

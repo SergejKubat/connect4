@@ -2,9 +2,8 @@ CREATE TABLE `connect4`.`player` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(50) CHARACTER SET 'ascii' NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(256) NOT NULL,
   `wins` INT NULL,
-  `defeats` INT NULL,
   `registeredAt` DATE NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE);

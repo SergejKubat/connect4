@@ -1,4 +1,4 @@
-package com.main.connect4server.client;
+package com.main.connect4server.utils;
 
 import com.main.connect4server.models.enums.GameState;
 
@@ -67,6 +67,15 @@ public class ComputerPlayer {
         return GameState.CONTINUE;
     }
 
+    public int getFirstEmptyRow(int col) {
+        for (int i = ROWS - 1; i >= 0; i--) {
+            if (board[i][col] == ' ') {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     private boolean checkWinState(int col, char player) {
 
         // first add the token into grid
@@ -78,6 +87,16 @@ public class ComputerPlayer {
 
         board[rowCount][col] = player;
 
+        if (checkColumns()) return true;
+        if (checkRows()) return true;
+        if (checkLRTopBottomDiagonal()) return true;
+        if (checkLRBottomTopDiagonal()) return true;
+        if (checkRLTopBottomDiagonal()) return true;
+
+        return checkRLBottomTopDiagonal();
+    }
+
+    private boolean checkColumns() {
         // check grid horizontally
         int countX = 0;
         int countO = 0;
@@ -117,16 +136,21 @@ public class ComputerPlayer {
                 }
                 // if 4 same tokens appear
                 if (countX == 4) {
-                    System.out.println("Horizontally");
-
                     resetBoard();
-
                     return true;
                 }
             }
             countX = 0;
             countO = 0;
         }
+
+        return false;
+    }
+
+    private boolean checkRows() {
+        // check grid horizontally
+        int countX = 0;
+        int countO = 0;
 
         // check grid vertically
         // reset countX & countO
@@ -163,16 +187,21 @@ public class ComputerPlayer {
                 }
                 // if 4 same tokens appear.
                 if (countX == 4 || countO == 4) {
-                    System.out.println("Vertically");
-
                     resetBoard();
-
                     return true;
                 }
             }
             countX = 0;
             countO = 0;
         }
+
+        return false;
+    }
+
+    private boolean checkLRTopBottomDiagonal() {
+        // check grid horizontally
+        int countX = 0;
+        int countO = 0;
 
         /// check grid diagonally.
         // check left to right, top to bottom diagonal
@@ -206,8 +235,6 @@ public class ComputerPlayer {
                     }
                     // if 4 same tokens appear.
                     if (countX == 4 || countO == 4) {
-                        System.out.println("Diagonal, L-R, Top-Bom");
-
                         resetBoard();
 
                         return true;
@@ -216,10 +243,16 @@ public class ComputerPlayer {
             }
         }
 
+        return false;
+    }
+
+    private boolean checkLRBottomTopDiagonal() {
+        // check grid horizontally
+        int countX = 0;
+        int countO = 0;
+
         // check left to right, bottom to top diagonal
         // reset countX & countO
-        countX = 0;
-        countO = 0;
         for (int i = ROWS - 1; i > 3; i--) {
             for (int j = 0; j < COLS - 3; j++) {
                 for (int k = 0; k < 4; k++) {
@@ -249,20 +282,23 @@ public class ComputerPlayer {
                     }
                     // if 4 same tokens appear.
                     if (countX == 4 || countO == 4) {
-                        System.out.println("Diagonal, L-R, Bom-Top");
-
                         resetBoard();
-
                         return true;
                     }
                 }
             }
         }
 
+        return false;
+    }
+
+    private boolean checkRLTopBottomDiagonal() {
+        // check grid horizontally
+        int countX = 0;
+        int countO = 0;
+
         // check right to left, top to bottom diagonal
         // reset countX & countO
-        countX = 0;
-        countO = 0;
         for (int i = 0; i < ROWS - 3; i++) {
             for (int j = COLS - 1; j > 3; j--) {
                 for (int k = 0; k < 4; k++) {
@@ -292,7 +328,6 @@ public class ComputerPlayer {
                     }
                     // if 4 same tokens appear
                     if (countX == 4 || countO == 4) {
-                        System.out.println("Diagonal, R-L, Top-Bom");
                         resetBoard();
                         return true;
                     }
@@ -300,10 +335,16 @@ public class ComputerPlayer {
             }
         }
 
+        return false;
+    }
+
+    private boolean checkRLBottomTopDiagonal() {
+        // check grid horizontally
+        int countX = 0;
+        int countO = 0;
+
         // check right to left, bottom to top diagonal
         // reset countX & countO
-        countX = 0;
-        countO = 0;
         for (int i = ROWS - 1; i > 3; i--) {
             for (int j = COLS - 1; j > 3; j--) {
                 for (int k = 0; k < 4; k++) {
@@ -333,7 +374,6 @@ public class ComputerPlayer {
                     }
                     // if 4 same tokens appear
                     if (countX == 4 || countO == 4) {
-                        System.out.println("Diagonal, R-L, Bom-Top");
                         resetBoard();
                         return true;
                     }
@@ -341,16 +381,6 @@ public class ComputerPlayer {
             }
         }
 
-        // no one wins for now.
         return false;
-    }
-
-    public int getFirstEmptyRow(int col) {
-        for (int i = ROWS - 1; i >= 0; i--) {
-            if (board[i][col] == ' ') {
-                return i;
-            }
-        }
-        return -1;
     }
 }

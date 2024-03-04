@@ -18,12 +18,6 @@ public class TableRowController {
     private Label winsLabel;
 
     @FXML
-    private Label defeatsLabel;
-
-    @FXML
-    private Label matchesPlayedLabel;
-
-    @FXML
     private Label registeredAtLabel;
 
     public void setRank(int rank) {
@@ -36,14 +30,6 @@ public class TableRowController {
 
     public void setWins(int wins) {
         winsLabel.setText(String.valueOf(wins));
-    }
-
-    public void setDefeats(int defeats) {
-        defeatsLabel.setText(String.valueOf(defeats));
-    }
-
-    public void setMatchesPlayed(int matchesPlayed) {
-        matchesPlayedLabel.setText(String.valueOf(matchesPlayed));
     }
 
     public void setRegisteredAt(Date registeredAt) {

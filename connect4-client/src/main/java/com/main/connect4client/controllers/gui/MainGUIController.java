@@ -29,11 +29,9 @@ public class MainGUIController {
         // set player data
         Player currentPlayer = Session.getInstance().getPlayer();
 
-        this.mainController.welcomeLabel.setText("Welcome, " + currentPlayer.getUsername());
+        this.mainController.welcomeLabel.setText("Welcome, " + currentPlayer.getUsername() + "!");
         this.mainController.emailLabel.setText(currentPlayer.getEmail());
         this.mainController.winsLabel.setText(String.valueOf(currentPlayer.getWins()));
-        this.mainController.defeatsLabel.setText(String.valueOf(currentPlayer.getDefeats()));
-        this.mainController.matchesPlayedLabel.setText(String.valueOf(currentPlayer.getDefeats() + currentPlayer.getDefeats()));
 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 

@@ -38,12 +38,6 @@ public class MainController {
     public Label winsLabel;
 
     @FXML
-    public Label defeatsLabel;
-
-    @FXML
-    public Label matchesPlayedLabel;
-
-    @FXML
     public Label registeredAtLabel;
 
     @FXML

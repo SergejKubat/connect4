@@ -4,7 +4,9 @@ import com.main.connect4client.Main;
 import com.main.connect4client.controllers.client.ClientController;
 import com.main.connect4client.controllers.fxml.MatchController;
 import com.main.connect4client.utils.Message;
+import com.main.connect4client.utils.Session;
 import com.main.connect4shared.domain.GameMove;
+import com.main.connect4shared.domain.Player;
 import com.main.connect4shared.response.Response;
 import com.main.connect4shared.response.ResponseStatus;
 import javafx.animation.TranslateTransition;
@@ -200,6 +202,10 @@ public class MatchGUIController {
                 continueToPlay = false;
 
                 Platform.runLater(() -> {
+                    Player currentPlayer = Session.getInstance().getPlayer();
+
+                    currentPlayer.setWins(currentPlayer.getWins() + 1);
+
                     Message.showMessage("Congratulations, you won!", Alert.AlertType.INFORMATION);
                     openMainPage();
                 });
@@ -210,6 +216,10 @@ public class MatchGUIController {
                 handleMove((GameMove) response.getResult());
 
                 Platform.runLater(() -> {
+                    Player currentPlayer = Session.getInstance().getPlayer();
+
+                    currentPlayer.setWins(currentPlayer.getWins() - 1);
+
                     Message.showMessage("Computer player has won!", Alert.AlertType.INFORMATION);
                     openMainPage();
                 });

@@ -3,6 +3,7 @@ package com.main.connect4server.client;
 import com.main.connect4server.controllers.server.ServerController;
 import com.main.connect4server.database.DatabaseConnection;
 import com.main.connect4server.models.enums.GameState;
+import com.main.connect4server.utils.ComputerPlayer;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.GenericEntity;
@@ -21,7 +22,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
-public class ClientThread implements Runnable {
+public class ClientHandler implements Runnable {
     private final Socket socket;
 
     ComputerPlayer computerPlayer;
@@ -34,7 +35,7 @@ public class ClientThread implements Runnable {
 
     private boolean running;
 
-    public ClientThread(Socket socket) {
+    public ClientHandler(Socket socket) {
         this.socket = socket;
         this.computerPlayer = new ComputerPlayer();
         this.running = true;
@@ -157,9 +158,9 @@ public class ClientThread implements Runnable {
 
                             Player loser = ClientSession.getInstance().getPlayers().get(0);
 
-                            int currentDefeats = loser.getDefeats();
+                            int currentWins = loser.getWins();
 
-                            loser.setDefeats(++currentDefeats);
+                            loser.setWins(--currentWins);
 
                             ServerController.getInstance().updatePlayerWins(loser);
 
