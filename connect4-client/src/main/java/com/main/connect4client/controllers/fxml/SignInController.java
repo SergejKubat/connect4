@@ -15,10 +15,10 @@ public class SignInController {
     public AnchorPane signInContainer;
 
     @FXML
-    public TextField usernameInput;
+    public TextField username;
 
     @FXML
-    public PasswordField passwordInput;
+    public PasswordField password;
 
     @FXML
     public Label usernameInputError;

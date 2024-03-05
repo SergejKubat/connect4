@@ -3,6 +3,7 @@ package com.main.connect4client.controllers.gui;
 import com.main.connect4client.Main;
 import com.main.connect4client.controllers.client.ClientController;
 import com.main.connect4client.controllers.fxml.SignInController;
+import com.main.connect4client.utils.ConverterGUIDE;
 import com.main.connect4client.utils.Message;
 import com.main.connect4client.utils.Session;
 import com.main.connect4shared.domain.Player;
@@ -24,8 +25,12 @@ public class SignInGUIController {
     }
 
     public void singIn() {
-        String username = this.signInController.usernameInput.getText();
-        String password = this.signInController.passwordInput.getText();
+        Player player = new Player();
+
+        ConverterGUIDE.converterGUID(this.signInController, player);
+
+        String username = player.getUsername();
+        String password = player.getPassword();
 
         boolean validationResult = validateInputs(username, password);
 
@@ -34,7 +39,7 @@ public class SignInGUIController {
         }
 
         try {
-            Player player = ClientController.getInstance().signIn(username, password);
+            player = ClientController.getInstance().signIn(username, password);
 
             Session.getInstance().setPlayer(player);
 
