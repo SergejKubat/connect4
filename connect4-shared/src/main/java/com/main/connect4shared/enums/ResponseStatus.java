@@ -1,4 +1,4 @@
-package com.main.connect4shared.response;
+package com.main.connect4shared.enums;
 
 import java.io.Serializable;
 
@@ -23,8 +23,8 @@ import java.io.Serializable;
 public enum ResponseStatus implements Serializable {
     SUCCESS("SUCCESS"),
     ERROR("ERROR"),
-    PLAYER_1_WON("PLAYER1_WON"),
-    PLAYER_2_WON("PLAYER2_WON"),
+    PLAYER_HUMAN_WON("PLAYER_HUMAN_WON"),
+    PLAYER_COMPUTER_WON("PLAYER_COMPUTER_WON"),
     DRAW("DRAW"),
     CONTINUE("CONTINUE");
 

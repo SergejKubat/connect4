@@ -1,6 +1,7 @@
 package com.main.connect4shared.request;
 
-import com.main.connect4shared.domain.GenericEntity;
+import com.main.connect4shared.domain.generic.GenericEntity;
+import com.main.connect4shared.enums.RequestOperation;
 
 import java.io.Serializable;
 

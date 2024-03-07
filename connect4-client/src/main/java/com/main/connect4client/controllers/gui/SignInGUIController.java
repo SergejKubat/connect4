@@ -27,7 +27,7 @@ public class SignInGUIController {
     public void singIn() {
         Player player = new Player();
 
-        ConverterGUIDE.converterGUID(this.signInController, player);
+        ConverterGUIDE.convertGUIDK(this.signInController, player);
 
         String username = player.getUsername();
         String password = player.getPassword();

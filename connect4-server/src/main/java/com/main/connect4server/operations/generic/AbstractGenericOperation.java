@@ -3,7 +3,7 @@ package com.main.connect4server.operations.generic;
 import com.main.connect4server.database.DatabaseBroker;
 import com.main.connect4server.database.DatabaseRepository;
 import com.main.connect4server.repositories.CustomRepository;
-import com.main.connect4shared.domain.GenericEntity;
+import com.main.connect4shared.domain.generic.GenericEntity;
 
 public abstract class AbstractGenericOperation<T extends GenericEntity> {
     protected final CustomRepository repository;

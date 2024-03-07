@@ -8,7 +8,7 @@ import com.main.connect4client.utils.Session;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.Player;
 import com.main.connect4shared.response.Response;
-import com.main.connect4shared.response.ResponseStatus;
+import com.main.connect4shared.enums.ResponseStatus;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -198,7 +198,7 @@ public class MatchGUIController {
         ResponseStatus status = response.getStatus();
 
         switch (status) {
-            case PLAYER_1_WON -> {
+            case PLAYER_HUMAN_WON -> {
                 continueToPlay = false;
 
                 Platform.runLater(() -> {
@@ -210,7 +210,7 @@ public class MatchGUIController {
                     openMainPage();
                 });
             }
-            case PLAYER_2_WON -> {
+            case PLAYER_COMPUTER_WON -> {
                 continueToPlay = false;
 
                 handleMove((GameMove) response.getResult());

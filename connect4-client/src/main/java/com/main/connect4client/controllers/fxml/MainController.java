@@ -29,16 +29,16 @@ public class MainController {
     public MenuItem aboutItem;
 
     @FXML
-    public Label welcomeLabel;
+    public Label username;
 
     @FXML
-    public Label emailLabel;
+    public Label email;
 
     @FXML
-    public Label winsLabel;
+    public Label wins;
 
     @FXML
-    public Label registeredAtLabel;
+    public Label registeredAt;
 
     @FXML
     public Button signOutBtn;

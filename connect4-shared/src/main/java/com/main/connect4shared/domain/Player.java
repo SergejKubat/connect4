@@ -1,5 +1,7 @@
 package com.main.connect4shared.domain;
 
+import com.main.connect4shared.domain.generic.GenericEntity;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -156,21 +158,16 @@ public class Player implements GenericEntity {
         this.password = password;
     }
 
+
     /**
-     * Gets the value of the wins property.
-     *
-     * @return possible object is
-     * {@link int }
+     * Gets the value of the win's property.
      */
     public int getWins() {
         return wins;
     }
 
     /**
-     * Sets the value of the wins property.
-     *
-     * @param wins allowed object is
-     *             {@link int }
+     * Sets the value of the win's property.
      */
     public void setWins(int wins) {
         this.wins = wins;

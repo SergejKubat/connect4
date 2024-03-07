@@ -1,5 +1,7 @@
 package com.main.connect4shared.response;
 
+import com.main.connect4shared.enums.ResponseStatus;
+
 import java.io.Serializable;
 
 /**
@@ -27,13 +29,7 @@ import java.io.Serializable;
 public class Response implements Serializable {
     private Exception exception;
 
-    private String message;
-
     private Object result;
-
-    private Object result2;
-
-    private Object result3;
 
     private ResponseStatus status;
 
@@ -58,26 +54,6 @@ public class Response implements Serializable {
     }
 
     /**
-     * Gets the value of the message property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * Sets the value of the message property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
-    public void setMessage(String value) {
-        this.message = value;
-    }
-
-    /**
      * Gets the value of the result property.
      *
      * @return possible object is
@@ -95,46 +71,6 @@ public class Response implements Serializable {
      */
     public void setResult(Object value) {
         this.result = value;
-    }
-
-    /**
-     * Gets the value of the result2 property.
-     *
-     * @return possible object is
-     * {@link Object }
-     */
-    public Object getResult2() {
-        return result2;
-    }
-
-    /**
-     * Sets the value of the result2 property.
-     *
-     * @param value allowed object is
-     *              {@link Object }
-     */
-    public void setResult2(Object value) {
-        this.result2 = value;
-    }
-
-    /**
-     * Gets the value of the result3 property.
-     *
-     * @return possible object is
-     * {@link Object }
-     */
-    public Object getResult3() {
-        return result3;
-    }
-
-    /**
-     * Sets the value of the result3 property.
-     *
-     * @param value allowed object is
-     *              {@link Object }
-     */
-    public void setResult3(Object value) {
-        this.result3 = value;
     }
 
     /**

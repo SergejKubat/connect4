@@ -1,4 +1,4 @@
-package com.main.connect4shared.request;
+package com.main.connect4shared.enums;
 
 import java.io.Serializable;
 

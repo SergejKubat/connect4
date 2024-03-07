@@ -1,6 +1,6 @@
 package com.main.connect4server.database;
 
-import com.main.connect4shared.domain.GenericEntity;
+import com.main.connect4shared.domain.generic.GenericEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

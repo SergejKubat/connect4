@@ -1,4 +1,4 @@
-package com.main.connect4shared.domain;
+package com.main.connect4shared.domain.generic;
 
 import java.io.Serializable;
 import java.sql.ResultSet;

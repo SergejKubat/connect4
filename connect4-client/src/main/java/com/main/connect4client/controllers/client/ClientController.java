@@ -4,9 +4,9 @@ import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.Player;
 import com.main.connect4shared.request.Request;
-import com.main.connect4shared.request.RequestOperation;
+import com.main.connect4shared.enums.RequestOperation;
 import com.main.connect4shared.response.Response;
-import com.main.connect4shared.response.ResponseStatus;
+import com.main.connect4shared.enums.ResponseStatus;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

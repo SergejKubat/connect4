@@ -2,6 +2,7 @@ package com.main.connect4client.controllers.gui;
 
 import com.main.connect4client.Main;
 import com.main.connect4client.controllers.fxml.MainController;
+import com.main.connect4client.utils.ConverterGUIDE;
 import com.main.connect4client.utils.Session;
 import com.main.connect4shared.domain.Player;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +12,6 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 public class MainGUIController {
     private final MainController mainController;
@@ -29,13 +28,7 @@ public class MainGUIController {
         // set player data
         Player currentPlayer = Session.getInstance().getPlayer();
 
-        this.mainController.welcomeLabel.setText("Welcome, " + currentPlayer.getUsername() + "!");
-        this.mainController.emailLabel.setText(currentPlayer.getEmail());
-        this.mainController.winsLabel.setText(String.valueOf(currentPlayer.getWins()));
-
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-
-        this.mainController.registeredAtLabel.setText(dateFormat.format(currentPlayer.getRegisteredAt()));
+        ConverterGUIDE.convertDKUGUI(currentPlayer, this.mainController);
     }
 
     public void openNewMatchPage() {

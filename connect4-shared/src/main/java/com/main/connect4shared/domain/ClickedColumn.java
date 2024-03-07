@@ -1,8 +1,27 @@
 package com.main.connect4shared.domain;
 
+import com.main.connect4shared.domain.generic.GenericEntity;
+
 import java.sql.ResultSet;
 import java.util.List;
 
+/**
+ * <p>Java class for ClickedColumn complex type.
+ *
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ *
+ * <pre>
+ * &lt;complexType name="ClickedColumn">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{<a href="http://www.w3.org/2001/XMLSchema">...</a>}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="column" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ */
 public class ClickedColumn implements GenericEntity {
     private int column;
 
@@ -10,17 +29,18 @@ public class ClickedColumn implements GenericEntity {
         this.column = column;
     }
 
+    /**
+     * Gets the value of the column property.
+     */
     public int getColumn() {
         return column;
     }
 
+    /**
+     * Sets the value of the column property.
+     */
     public void setColumn(int column) {
         this.column = column;
-    }
-
-    @Override
-    public String toString() {
-        return "ChooseColumn{" + "column=" + column + '}';
     }
 
     @Override
@@ -83,7 +103,7 @@ public class ClickedColumn implements GenericEntity {
     }
 
     @Override
-    public List<GenericEntity> getList(ResultSet resultSet) throws Exception {
+    public List<GenericEntity> getList(ResultSet resultSet) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

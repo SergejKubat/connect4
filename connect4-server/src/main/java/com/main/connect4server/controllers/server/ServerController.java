@@ -7,7 +7,7 @@ import com.main.connect4server.operations.SignUpOperation;
 import com.main.connect4server.operations.UpdatePlayerOperation;
 import com.main.connect4server.operations.generic.AbstractGenericOperation;
 import com.main.connect4server.repositories.CustomRepository;
-import com.main.connect4shared.domain.GenericEntity;
+import com.main.connect4shared.domain.generic.GenericEntity;
 
 import java.util.List;
 

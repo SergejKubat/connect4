@@ -1,7 +1,7 @@
 package com.main.connect4server.operations;
 
 import com.main.connect4server.operations.generic.AbstractGenericOperation;
-import com.main.connect4shared.domain.GenericEntity;
+import com.main.connect4shared.domain.generic.GenericEntity;
 import com.main.connect4shared.domain.Player;
 
 import java.util.List;

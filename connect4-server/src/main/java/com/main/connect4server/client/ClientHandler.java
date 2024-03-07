@@ -6,12 +6,12 @@ import com.main.connect4server.models.enums.GameState;
 import com.main.connect4server.utils.ComputerPlayer;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
-import com.main.connect4shared.domain.GenericEntity;
+import com.main.connect4shared.domain.generic.GenericEntity;
 import com.main.connect4shared.domain.Player;
 import com.main.connect4shared.request.Request;
-import com.main.connect4shared.request.RequestOperation;
+import com.main.connect4shared.enums.RequestOperation;
 import com.main.connect4shared.response.Response;
-import com.main.connect4shared.response.ResponseStatus;
+import com.main.connect4shared.enums.ResponseStatus;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -123,7 +123,7 @@ public class ClientHandler implements Runnable {
 
                             ServerController.getInstance().updatePlayerWins(winner);
 
-                            response.setStatus(ResponseStatus.PLAYER_1_WON);
+                            response.setStatus(ResponseStatus.PLAYER_HUMAN_WON);
 
                             send(response);
 
@@ -153,7 +153,7 @@ public class ClientHandler implements Runnable {
 
                         // Check if computer player wins
                         if (this.gameState == GameState.OWin) {
-                            response.setStatus(ResponseStatus.PLAYER_2_WON);
+                            response.setStatus(ResponseStatus.PLAYER_COMPUTER_WON);
                             response.setResult(new GameMove(computerRow, computerColumn));
 
                             Player loser = ClientSession.getInstance().getPlayers().get(0);
