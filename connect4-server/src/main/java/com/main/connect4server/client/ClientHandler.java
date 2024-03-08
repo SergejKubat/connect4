@@ -6,12 +6,12 @@ import com.main.connect4server.models.enums.GameState;
 import com.main.connect4server.utils.ComputerPlayer;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
-import com.main.connect4shared.domain.generic.GenericEntity;
 import com.main.connect4shared.domain.Player;
-import com.main.connect4shared.request.Request;
+import com.main.connect4shared.domain.generic.GenericEntity;
 import com.main.connect4shared.enums.RequestOperation;
-import com.main.connect4shared.response.Response;
 import com.main.connect4shared.enums.ResponseStatus;
+import com.main.connect4shared.request.Request;
+import com.main.connect4shared.response.Response;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;

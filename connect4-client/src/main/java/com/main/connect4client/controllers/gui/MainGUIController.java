@@ -109,6 +109,9 @@ public class MainGUIController {
     }
 
     public void signOut() {
+        // clear current user
+        Session.getInstance().setPlayer(null);
+
         Stage stage = (Stage) this.mainController.mainContainer.getScene().getWindow();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));

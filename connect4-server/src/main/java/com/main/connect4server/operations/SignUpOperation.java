@@ -2,8 +2,8 @@ package com.main.connect4server.operations;
 
 import com.main.connect4server.operations.generic.AbstractGenericOperation;
 import com.main.connect4server.utils.HashUtil;
-import com.main.connect4shared.domain.generic.GenericEntity;
 import com.main.connect4shared.domain.Player;
+import com.main.connect4shared.domain.generic.GenericEntity;
 import com.main.connect4shared.utils.Validator;
 
 public class SignUpOperation extends AbstractGenericOperation<Player> {

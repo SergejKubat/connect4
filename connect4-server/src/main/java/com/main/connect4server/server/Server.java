@@ -1,6 +1,7 @@
 package com.main.connect4server.server;
 
 import com.main.connect4server.client.ClientHandler;
+import com.main.connect4server.settings.Constants;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -23,7 +24,7 @@ public class Server implements Runnable {
     @Override
     public void run() {
         try {
-            serverSocket = new ServerSocket(5000);
+            serverSocket = new ServerSocket(Constants.PORT);
 
             ExecutorService executorService = Executors.newCachedThreadPool();
 

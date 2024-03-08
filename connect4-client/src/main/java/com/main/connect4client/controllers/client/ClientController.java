@@ -1,12 +1,13 @@
 package com.main.connect4client.controllers.client;
 
+import com.main.connect4client.settings.Constants;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.Player;
-import com.main.connect4shared.request.Request;
 import com.main.connect4shared.enums.RequestOperation;
-import com.main.connect4shared.response.Response;
 import com.main.connect4shared.enums.ResponseStatus;
+import com.main.connect4shared.request.Request;
+import com.main.connect4shared.response.Response;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,7 +21,7 @@ public class ClientController {
 
     private ClientController() {
         try {
-            socket = new Socket("localhost", 5000);
+            socket = new Socket("localhost", Constants.PORT);
         } catch (IOException e) {
             e.printStackTrace();
         }

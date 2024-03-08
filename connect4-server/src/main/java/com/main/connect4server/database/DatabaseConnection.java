@@ -1,16 +1,12 @@
 package com.main.connect4server.database;
 
+import com.main.connect4server.settings.Constants;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String DATABASE_URL = "jdbc:mysql://localhost/connect4";
-
-    private static final String DATABASE_USER = "root";
-
-    private static final String DATABASE_PASSWORD = "";
-
     private static DatabaseConnection instance;
 
     private Connection connection;
@@ -28,7 +24,11 @@ public class DatabaseConnection {
 
     public Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+            connection = DriverManager.getConnection(
+                    Constants.DATABASE_URL,
+                    Constants.DATABASE_USER,
+                    Constants.DATABASE_PASSWORD);
+
             connection.setAutoCommit(false);
         }
 

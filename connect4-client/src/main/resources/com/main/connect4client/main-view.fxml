@@ -51,7 +51,7 @@
         </ImageView>
     </HBox>
     <HBox alignment="CENTER" layoutY="220.0" prefWidth="800.0">
-        <Label text="Welcome!" textFill="WHITE">
+        <Label text="Welcome back!" textFill="WHITE">
             <font>
                 <Font name="Arial" size="32.0"/>
             </font>
