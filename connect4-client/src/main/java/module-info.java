@@ -3,6 +3,7 @@ module com.main.connect4client {
     requires javafx.fxml;
     requires java.desktop;
     requires connect.shared;
+    requires com.fasterxml.jackson.databind;
 
     exports com.main.connect4client;
     exports com.main.connect4client.controllers.fxml;

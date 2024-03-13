@@ -1,5 +1,6 @@
 package com.main.connect4client.controllers.client;
 
+import com.main.connect4client.service.WebService;
 import com.main.connect4client.settings.Constants;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
@@ -13,15 +14,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class ClientController {
     private static ClientController instance;
 
     private Socket socket;
 
+    private WebService webService;
+
     private ClientController() {
         try {
             socket = new Socket("localhost", Constants.PORT);
+            webService = new WebService();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,16 +76,8 @@ public class ClientController {
         throw response.getException();
     }
 
-    public int startMatch() {
-        Request request = new Request(RequestOperation.START_MATCH, null);
-
-        send(request);
-
-        Response response = read();
-
-        assert response != null;
-
-        return (int) response.getResult();
+    public List<Player> getAllPlayers() {
+        return webService.getAllPlayers();
     }
 
     public int getAvailableRow(int column) {
@@ -105,14 +102,6 @@ public class ClientController {
         send(request);
 
         return read();
-    }
-
-    public GameMove receiveMove() {
-        Response response = read();
-
-        assert response != null;
-
-        return (GameMove) response.getResult();
     }
 
     private void send(Request request) {

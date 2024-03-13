@@ -1,6 +1,7 @@
 package com.main.connect4client.controllers.gui;
 
 import com.main.connect4client.Main;
+import com.main.connect4client.controllers.client.ClientController;
 import com.main.connect4client.controllers.fxml.RankingsController;
 import com.main.connect4client.controllers.fxml.TableRowController;
 import com.main.connect4shared.domain.Player;
@@ -14,7 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public class RankingsGUIController {
@@ -27,16 +27,6 @@ public class RankingsGUIController {
         this.rankingsController.backToMainBtn.setOnAction(event -> backToMain());
 
         startService();
-    }
-
-    private static List<Player> getPlayers() {
-        return List.of(
-                new Player(1L, "player1", 51, new Date()),
-                new Player(2L, "player2", 42, new Date()),
-                new Player(3L, "player3", 34, new Date()),
-                new Player(4L, "player4", 25, new Date()),
-                new Player(5L, "player5", 18, new Date())
-        );
     }
 
     private void startService() {
@@ -82,7 +72,7 @@ public class RankingsGUIController {
                 tableRowController.setRank(rank);
                 tableRowController.setUsername(player.getUsername());
                 tableRowController.setWins(player.getWins());
-                tableRowController.setRegisteredAt(new Date());
+                tableRowController.setRegisteredAt(player.getRegisteredAt());
 
                 this.rankingsController.rankingsData.getChildren().add(tableRow);
 
@@ -113,15 +103,8 @@ public class RankingsGUIController {
         protected Task<List<Player>> createTask() {
             return new Task<>() {
                 @Override
-                protected List<Player> call() throws Exception {
-                    // Simulate data loading delay (replace this with your actual data loading logic)
-                    Thread.sleep(2000);
-
-                    // Simulate an error during data loading
-                    // throw new RuntimeException();
-
-                    // Simulate fetching data
-                    return getPlayers();
+                protected List<Player> call() {
+                    return ClientController.getInstance().getAllPlayers();
                 }
             };
         }
