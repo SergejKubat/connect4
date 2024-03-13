@@ -42,7 +42,8 @@ public class WebService {
             // Parse JSON array response into a list of players
             ObjectMapper objectMapper = new ObjectMapper();
 
-            return objectMapper.readValue(responseStringBuilder.toString(), new TypeReference<>() {});
+            return objectMapper.readValue(responseStringBuilder.toString(), new TypeReference<>() {
+            });
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;

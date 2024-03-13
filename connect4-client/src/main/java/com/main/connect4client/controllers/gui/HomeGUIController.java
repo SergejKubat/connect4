@@ -2,7 +2,6 @@ package com.main.connect4client.controllers.gui;
 
 import com.main.connect4client.Main;
 import com.main.connect4client.controllers.fxml.HomeController;
-import com.main.connect4client.service.WebService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
