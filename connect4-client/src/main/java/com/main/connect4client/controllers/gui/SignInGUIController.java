@@ -41,6 +41,11 @@ public class SignInGUIController {
         try {
             player = ClientController.getInstance().signIn(username, password);
 
+            if (player == null) {
+                Message.showMessage("Invalid username or password.", Alert.AlertType.ERROR);
+                return;
+            }
+
             Session.getInstance().setPlayer(player);
 
             openMainPage();

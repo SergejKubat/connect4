@@ -7,7 +7,5 @@ public enum RequestOperation implements Serializable {
     SIGN_UP,
     GET_AVAILABLE_ROW,
     GET_PLAYERS,
-    SEND_MOVE,
-    RECEIVE_MOVE,
-    START_MATCH
+    SEND_MOVE
 }
