@@ -2,12 +2,12 @@ package com.main.connect4server.client;
 
 import com.main.connect4server.controllers.server.ServerController;
 import com.main.connect4server.database.DatabaseConnection;
-import com.main.connect4server.models.enums.GameState;
 import com.main.connect4server.utils.ComputerPlayer;
 import com.main.connect4shared.domain.ClickedColumn;
 import com.main.connect4shared.domain.GameMove;
 import com.main.connect4shared.domain.Player;
 import com.main.connect4shared.domain.generic.GenericEntity;
+import com.main.connect4shared.enums.GameState;
 import com.main.connect4shared.enums.RequestOperation;
 import com.main.connect4shared.enums.ResponseStatus;
 import com.main.connect4shared.request.Request;
@@ -114,7 +114,7 @@ public class ClientHandler implements Runnable {
                         this.gameState = this.computerPlayer.updateBoard(column, 'X');
 
                         // Check if human player wins
-                        if (this.gameState == GameState.XWin) {
+                        if (this.gameState == GameState.PLAYER_HUMAN_WON) {
                             Player winner = ClientSession.getInstance().getPlayers().get(0);
 
                             int currentWins = winner.getWins();
@@ -152,7 +152,7 @@ public class ClientHandler implements Runnable {
                         this.gameState = computerPlayer.updateBoard(computerColumn, 'O');
 
                         // Check if computer player wins
-                        if (this.gameState == GameState.OWin) {
+                        if (this.gameState == GameState.PLAYER_COMPUTER_WON) {
                             response.setStatus(ResponseStatus.PLAYER_COMPUTER_WON);
                             response.setResult(new GameMove(computerRow, computerColumn));
 

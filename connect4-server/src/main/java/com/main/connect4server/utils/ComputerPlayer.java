@@ -1,6 +1,6 @@
 package com.main.connect4server.utils;
 
-import com.main.connect4server.models.enums.GameState;
+import com.main.connect4shared.enums.GameState;
 
 public class ComputerPlayer {
     public final int ROWS = 6;
@@ -57,9 +57,9 @@ public class ComputerPlayer {
 
         if (winState) {
             if (player == 'X') {
-                return GameState.XWin;
+                return GameState.PLAYER_HUMAN_WON;
             } else {
-                return GameState.OWin;
+                return GameState.PLAYER_COMPUTER_WON;
             }
         }
 
