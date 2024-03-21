@@ -43,7 +43,7 @@ public class SignUpGUIController {
             openMainPage();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Message.showMessage(ex.getMessage(), Alert.AlertType.ERROR);
+            Message.showMessage("Username already exists.", Alert.AlertType.ERROR);
         }
     }
 

@@ -76,7 +76,7 @@ public class ClientController {
         throw response.getException();
     }
 
-    public List<Player> getAllPlayers() {
+    public List<Player> getAllPlayers() throws IOException {
         return webService.getAllPlayers();
     }
 

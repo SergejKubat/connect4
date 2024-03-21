@@ -47,10 +47,7 @@ public class RankingsGUIController {
         });
 
         dataService.setOnFailed(event -> {
-            Throwable exception = dataService.getException();
-            System.out.println(exception.getMessage());
-
-            this.rankingsController.loadingLabel.setText("Server error.");
+            this.rankingsController.loadingLabel.setText("Error loading ranking list.");
             this.rankingsController.loadingLabel.setTextFill(Color.rgb(220, 53, 69));
         });
 
@@ -104,7 +101,12 @@ public class RankingsGUIController {
             return new Task<>() {
                 @Override
                 protected List<Player> call() {
-                    return ClientController.getInstance().getAllPlayers();
+                    try {
+                        return ClientController.getInstance().getAllPlayers();
+                    } catch (Exception ex) {
+                        System.out.println("Hello.");
+                        throw new RuntimeException();
+                    }
                 }
             };
         }

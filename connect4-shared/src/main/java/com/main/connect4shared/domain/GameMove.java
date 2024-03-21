@@ -123,7 +123,7 @@ public class GameMove implements GenericEntity {
     }
 
     @Override
-    public GenericEntity getNewRecord(ResultSet rs) {
+    public GenericEntity getNewRecord(ResultSet resultSet) {
         return null;
     }
 }

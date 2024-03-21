@@ -113,7 +113,7 @@ public class ClickedColumn implements GenericEntity {
     }
 
     @Override
-    public GenericEntity getNewRecord(ResultSet rs) {
+    public GenericEntity getNewRecord(ResultSet resultSet) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
