@@ -27,14 +27,12 @@ public abstract class AbstractGenericOperation<T extends GenericEntity> {
         }
     }
 
-    // Operation-specific method
     protected abstract void validate(T entity) throws Exception;
 
     private void startTransaction() throws Exception {
         ((DatabaseRepository) repository).connect();
     }
 
-    // Operation-specific method
     protected abstract void executeOperation(T entity) throws Exception;
 
     private void commitTransaction() throws Exception {

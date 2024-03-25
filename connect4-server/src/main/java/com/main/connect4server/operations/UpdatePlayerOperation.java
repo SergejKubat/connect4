@@ -8,7 +8,7 @@ public class UpdatePlayerOperation extends AbstractGenericOperation<Player> {
     GenericEntity object;
 
     @Override
-    protected void validate(Player entity) throws Exception {
+    protected void validate(Player entity) {
     }
 
     @Override

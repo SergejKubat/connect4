@@ -7,10 +7,12 @@ import com.main.connect4client.utils.Session;
 import com.main.connect4shared.domain.Player;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URI;
 
 public class MainGUIController {
@@ -29,6 +31,13 @@ public class MainGUIController {
         Player currentPlayer = Session.getInstance().getPlayer();
 
         ConverterGUIDE.convertDKUGUI(currentPlayer, this.mainController);
+
+        // change sign out button background color
+        try {
+            changeSignOutButtonBackground();
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void openNewMatchPage() {
@@ -124,5 +133,15 @@ public class MainGUIController {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    private void changeSignOutButtonBackground() throws NoSuchFieldException, IllegalAccessException {
+        Class<? extends MainController> mainControllerClass = this.mainController.getClass();
+
+        Field signOutBtnField = mainControllerClass.getDeclaredField("signOutBtn");
+
+        Button signOutBtn = (Button) signOutBtnField.get(this.mainController);
+
+        signOutBtn.setStyle("-fx-background-color: #dc3545;");
     }
 }

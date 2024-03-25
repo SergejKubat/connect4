@@ -104,7 +104,6 @@ public class RankingsGUIController {
                     try {
                         return ClientController.getInstance().getAllPlayers();
                     } catch (Exception ex) {
-                        System.out.println("Hello.");
                         throw new RuntimeException();
                     }
                 }

@@ -27,11 +27,11 @@ import java.io.Serializable;
  * </pre>
  */
 public class Response implements Serializable {
-    private Exception exception;
-
     private Object result;
 
     private ResponseStatus status;
+
+    private Exception exception;
 
     /**
      * Gets the value of the exception property.

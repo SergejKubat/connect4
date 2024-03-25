@@ -37,10 +37,6 @@
    -fx-background-color: transparent;
 }
 
-.btn-red {
-    -fx-background-color: #dc3545;
-}
-
 .link {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
