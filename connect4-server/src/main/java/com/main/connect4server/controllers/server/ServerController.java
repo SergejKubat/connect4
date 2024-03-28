@@ -20,7 +20,7 @@ public class ServerController {
         repository = new DatabaseBroker();
     }
 
-    public synchronized static ServerController getInstance() {
+    public static synchronized ServerController getInstance() {
         if (instance == null) {
             instance = new ServerController();
         }
